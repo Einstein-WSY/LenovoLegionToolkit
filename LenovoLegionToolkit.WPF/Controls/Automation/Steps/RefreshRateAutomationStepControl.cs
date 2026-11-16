@@ -1,0 +1,51 @@
+﻿using System;
+using LenovoLegionToolkit.Lib;
+using LenovoLegionToolkit.Lib.Automation.Steps;
+using LenovoLegionToolkit.Lib.Listeners;
+using LenovoLegionToolkit.WPF.Resources;
+using LenovoLegionToolkit.WPF.Utils;
+using Wpf.Ui.Common;
+
+namespace LenovoLegionToolkit.WPF.Controls.Automation.Steps;
+
+/// <summary>
+/// “刷新率”步骤的编辑器：通过下拉框选择 <see cref="RefreshRate"/>，并监听显示配置变化以刷新可选值。
+/// </summary>
+public class RefreshRateAutomationStepControl : AbstractComboBoxAutomationStepCardControl<RefreshRate>
+{
+    // 显示配置监听器：分辨率/刷新率变化后重新拉取可用项。
+    private readonly DisplayConfigurationListener _listener = IoCContainer.Resolve<DisplayConfigurationListener>();
+
+    /// <summary>
+    /// 初始化编辑器并设置图标、标题与说明文本，同时订阅显示配置变化事件。
+    /// </summary>
+    /// <param name="step">要编辑的步骤实例。</param>
+    public RefreshRateAutomationStepControl(IAutomationStep<RefreshRate> step) : base(step)
+    {
+        Icon = SymbolRegular.DesktopPulse24;
+        Title = Resource.RefreshRateAutomationStepControl_Title;
+        Subtitle = Resource.RefreshRateAutomationStepControl_Message;
+
+        _listener.Changed += Listener_Changed;
+    }
+
+    /// <summary>
+    /// 生成下拉项显示文本，并强制按从左到右排版以适配 RTL 语言环境。
+    /// </summary>
+    /// <param name="value">刷新率值。</param>
+    /// <returns>显示文本。</returns>
+    protected override string ComboBoxItemDisplayName(RefreshRate value)
+    {
+        var str = base.ComboBoxItemDisplayName(value);
+        return LocalizationHelper.ForceLeftToRight(str);
+    }
+
+    /// <summary>
+    /// 显示配置变化时在 UI 线程刷新下拉项（仅当控件已加载）。
+    /// </summary>
+    private void Listener_Changed(object? sender, EventArgs e) => Dispatcher.Invoke(async () =>
+    {
+        if (IsLoaded)
+            await RefreshAsync();
+    });
+}
