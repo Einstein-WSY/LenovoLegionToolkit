@@ -2258,4 +2258,28 @@
     <value>始终将通知显示在顶部。
 这不会影响其他全屏窗口，但您将无法点击这些通知。</value>
   </data>
+  <data name="StatusTrayPopup_MinDischargeRate" xml:space="preserve">
+    <value>最小充放电功率</value>
+  </data>
+  <data name="StatusTrayPopup_MaxDischargeRate" xml:space="preserve">
+    <value>最大充放电功率</value>
+  </data>
+  <data name="BatteryPage_MinDischargeRate_Title" xml:space="preserve">
+    <value>最小充放电功率</value>
+  </data>
+  <data name="BatteryPage_MinDischargeRate_Message" xml:space="preserve">
+    <value>电池充电（+）或放电（-）的最小功率。</value>
+  </data>
+  <data name="BatteryPage_MaxDischargeRate_Title" xml:space="preserve">
+    <value>最大充放电功率</value>
+  </data>
+  <data name="BatteryPage_MaxDischargeRate_Message" xml:space="preserve">
+    <value>电池充电（+）或放电（-）的最大功率。</value>
+  </data>
+  <data name="BatteryPage_BatteryHealth_Title" xml:space="preserve">
+    <value>电池健康度</value>
+  </data>
+  <data name="BatteryPage_BatteryHealth_Message" xml:space="preserve">
+    <value>电池最大充电容量。</value>
+  </data>
 </root>
