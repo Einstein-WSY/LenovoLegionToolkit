@@ -122,7 +122,8 @@ public partial class SensorsControl
                 if (Log.Instance.IsTraceEnabled)
                     Log.Instance.Trace($"Sensors not supported.");
 
-                Dispatcher.Invoke(() => Visibility = Visibility.Collapsed);
+                // 【性能优化】用 InvokeAsync 投递而非阻塞等待 UI 线程，避免轮询线程被界面渲染阻塞导致采样间隔抖动
+                _ = Dispatcher.InvokeAsync(() => Visibility = Visibility.Collapsed);
                 return;
             }
 
@@ -135,7 +136,8 @@ public partial class SensorsControl
                 {
                     var data = await _controller.GetDataAsync();
                     // 传感器数据更新必须回到 UI 线程写入控件。
-                    Dispatcher.Invoke(() => UpdateValues(data));
+                    // 【性能优化】异步投递更新，采样线程无需等待 UI 线程空闲
+                    _ = Dispatcher.InvokeAsync(() => UpdateValues(data));
                     // 按用户在右键菜单中设置的间隔等待，以可取消的方式延时。
                     await Task.Delay(TimeSpan.FromSeconds(_dashboardSettings.Store.SensorsRefreshIntervalSeconds), token);
                 }
@@ -146,7 +148,7 @@ public partial class SensorsControl
                         Log.Instance.Trace($"Sensors refresh failed.", ex);
 
                     // 读取失败时清空显示，避免残留过期数值误导用户。
-                    Dispatcher.Invoke(() => UpdateValues(SensorsData.Empty));
+                    _ = Dispatcher.InvokeAsync(() => UpdateValues(SensorsData.Empty));
                 }
             }
 

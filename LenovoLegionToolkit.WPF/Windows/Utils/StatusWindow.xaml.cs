@@ -71,39 +71,54 @@ public partial class StatusWindow
         BatteryState? batteryState = null;
         var hasUpdate = false;
 
-        try
+        // 【性能优化】电源模式、独显状态、电池信息、电池模式四项数据互不依赖，
+        // 原先串行 await 使浮窗显示延迟等于各次 WMI/NVAPI 往返之和；这里并行采集以缩短首屏延迟。
+        // 每项仍保留独立的 try/catch，单项失败不影响其余信息。
+        var powerModeTask = Task.Run(async () =>
         {
-            if (await powerModeFeature.IsSupportedAsync())
+            try
             {
-                state = await powerModeFeature.GetStateAsync();
+                if (await powerModeFeature.IsSupportedAsync())
+                {
+                    state = await powerModeFeature.GetStateAsync();
 
-                if (state == PowerModeState.GodMode)
-                    godModePresetName = await godModeController.GetActivePresetNameAsync();
+                    if (state == PowerModeState.GodMode)
+                        godModePresetName = await godModeController.GetActivePresetNameAsync();
+                }
             }
-        }
-        catch { /* Ignored */ }
+            catch { /* Ignored */ }
+        });
 
-        try
+        var gpuTask = Task.Run(async () =>
         {
-            if (gpuController.IsSupported())
-                gpuStatus = await gpuController.RefreshNowAsync();
+            try
+            {
+                if (gpuController.IsSupported())
+                    gpuStatus = await gpuController.RefreshNowAsync();
 
-        }
-        catch { /* Ignored */ }
+            }
+            catch { /* Ignored */ }
+        });
 
-        try
+        var batteryInfoTask = Task.Run(() =>
         {
-            batteryInformation = Battery.GetBatteryInformation();
-        }
-        catch { /* Ignored */ }
+            try
+            {
+                batteryInformation = Battery.GetBatteryInformation();
+            }
+            catch { /* Ignored */ }
+        });
 
-        try
+        var batteryStateTask = Task.Run(async () =>
         {
-            if (await batteryFeature.IsSupportedAsync())
-                batteryState = await batteryFeature.GetStateAsync();
+            try
+            {
+                if (await batteryFeature.IsSupportedAsync())
+                    batteryState = await batteryFeature.GetStateAsync();
 
-        }
-        catch { /* Ignored */ }
+            }
+            catch { /* Ignored */ }
+        });
 
         /*
         try
@@ -114,6 +129,7 @@ public partial class StatusWindow
         }
         */ // 【已注释】更新模块已停用，状态浮窗不再检查新版本
 
+        await Task.WhenAll(powerModeTask, gpuTask, batteryInfoTask, batteryStateTask);
 
         return new(state, godModePresetName, gpuStatus, batteryInformation, batteryState, hasUpdate);
     }

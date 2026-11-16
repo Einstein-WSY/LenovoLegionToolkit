@@ -144,14 +144,22 @@ public partial class App
 
         AutomationPage.EnableHybridModeAutomation = flags.EnableHybridModeAutomation;
 
-        // 依次初始化各硬件功能（每个方法内部自行捕获异常，互不影响）
-        await LogSoftwareStatusAsync();
-        await InitPowerModeFeatureAsync();
-        await InitBatteryFeatureAsync();
-        await InitRgbKeyboardControllerAsync();
-        await InitSpectrumKeyboardControllerAsync();
-        await InitGpuOverclockControllerAsync();
+        // 【性能优化】以下硬件功能彼此独立，且每项都包含多次 WMI/HID/NVAPI 往返与固定等待，
+        // 串行 await 会把启动耗时线性累加；改为并行执行以重叠这些 I/O 等待。
+        // 仍需保持的顺序约束：
+        //  - GPU 超频必须早于混合模式（后者可能弹出/断电独显，届时无法再写超频）
+        //  - RGB 与 Spectrum 键盘控制器共用灯效控制权，二者之间保持串行
+        //  - 自动化处理器必须最后执行（其步骤依赖上述功能已就绪）
+        await Task.WhenAll(
+            LogSoftwareStatusAsync(),
+            InitPowerModeFeatureAsync(),
+            InitBatteryFeatureAsync(),
+            InitGpuOverclockControllerAsync(),
+            InitKeyboardBacklightAsync());
+
+        // 依赖顺序：独显可能在此被断电，必须位于超频应用之后
         await InitHybridModeAsync();
+        // 自动化规则需在各硬件功能初始化完成后执行
         await InitAutomationProcessorAsync();
         InitMacroController();
 
@@ -539,6 +547,14 @@ public partial class App
             if (Log.Instance.IsTraceEnabled)
                 Log.Instance.Trace($"Couldn't ensure correct battery mode.", ex);
         }
+    }
+
+    // 【性能优化】把两个键盘背光控制器组合为一次串行等待，对外表现为一个可并行的初始化任务。
+    // 二者都通过 WMI 争夺"灯光控制权"，并行会互相抢占，故内部保持先后顺序。
+    private static async Task InitKeyboardBacklightAsync()
+    {
+        await InitRgbKeyboardControllerAsync();
+        await InitSpectrumKeyboardControllerAsync();
     }
 
     // 获取 RGB 键盘灯效控制权并恢复上次预设

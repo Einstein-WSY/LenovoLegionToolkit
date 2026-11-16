@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Management;
@@ -16,6 +17,31 @@ namespace LenovoLegionToolkit.Lib.System.Management;
 public static partial class WMI
 {
     /// <summary>
+    /// WMI 命名空间作用域缓存。
+    /// 【性能优化】每次 new ManagementObjectSearcher(string scope, ...) 都会重新解析命名空间路径并建立连接，
+    /// 而本项目在启动、状态浮窗、传感器轮询等路径上会高频执行 WMI 查询，重复建连开销明显。
+    /// 这里按命名空间复用已连接的 <see cref="ManagementScope"/>，避免重复建连。
+    /// </summary>
+    private static readonly ConcurrentDictionary<string, ManagementScope> ScopeCache =
+        new(StringComparer.OrdinalIgnoreCase);
+
+    /// <summary>
+    /// 获取（必要时创建并连接）指定命名空间的 WMI 作用域。
+    /// </summary>
+    /// <param name="path">WMI 命名空间路径，如 root\WMI。</param>
+    /// <returns>已连接的作用域实例（按命名空间复用）。</returns>
+    private static ManagementScope GetScope(string path)
+    {
+        var scope = ScopeCache.GetOrAdd(path, static p => new ManagementScope(p));
+
+        // IsConnected 为 false 时才建连；Connect() 幂等，并发调用安全。
+        if (!scope.IsConnected)
+            scope.Connect();
+
+        return scope;
+    }
+
+    /// <summary>
     /// 判断指定的 WMI 实例是否存在。
     /// </summary>
     /// <param name="scope">WMI 命名空间，如 root\WMI。</param>
@@ -26,7 +52,8 @@ public static partial class WMI
         try
         {
             var queryFormatted = query.ToString(WMIPropertyValueFormatter.Instance);
-            var mos = new ManagementObjectSearcher(scope, queryFormatted);
+            // 【性能优化】复用已连接的作用域，并显式释放查询对象（底层持有 COM 资源）
+            using var mos = new ManagementObjectSearcher(GetScope(scope), new ObjectQuery(queryFormatted));
             var managementObjects = await mos.GetAsync().ConfigureAwait(false);
             return managementObjects.Any();
         }
@@ -72,7 +99,8 @@ public static partial class WMI
         try
         {
             var queryFormatted = query.ToString(WMIPropertyValueFormatter.Instance);
-            var mos = new ManagementObjectSearcher(scope, queryFormatted);
+            // 【性能优化】复用已连接的作用域，并显式释放查询对象
+            using var mos = new ManagementObjectSearcher(GetScope(scope), new ObjectQuery(queryFormatted));
             var managementObjects = await mos.GetAsync().ConfigureAwait(false);
             var result = managementObjects.Select(mo => mo.Properties).Select(converter);
             return result;
@@ -97,7 +125,8 @@ public static partial class WMI
         try
         {
             var queryFormatted = query.ToString(WMIPropertyValueFormatter.Instance);
-            var mos = new ManagementObjectSearcher(scope, queryFormatted);
+            // 【性能优化】复用已连接的作用域，并显式释放查询对象
+            using var mos = new ManagementObjectSearcher(GetScope(scope), new ObjectQuery(queryFormatted));
             var managementObjects = await mos.GetAsync().ConfigureAwait(false);
             var managementObject = managementObjects.FirstOrDefault() ?? throw new InvalidOperationException("No results in query");
 
@@ -133,7 +162,8 @@ public static partial class WMI
         {
             var queryFormatted = query.ToString(WMIPropertyValueFormatter.Instance);
 
-            var mos = new ManagementObjectSearcher(scope, queryFormatted);
+            // 【性能优化】复用已连接的作用域，并显式释放查询对象
+            using var mos = new ManagementObjectSearcher(GetScope(scope), new ObjectQuery(queryFormatted));
             var managementObjects = await mos.GetAsync().ConfigureAwait(false);
             var managementObject = managementObjects.FirstOrDefault() ?? throw new InvalidOperationException("No results in query");
 

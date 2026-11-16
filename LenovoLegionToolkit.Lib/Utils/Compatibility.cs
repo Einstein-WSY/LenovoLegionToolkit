@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using LenovoLegionToolkit.Lib.Extensions;
 using LenovoLegionToolkit.Lib.System;
@@ -82,6 +83,14 @@ public static partial class Compatibility
     private static MachineInformation? _machineInformation;
 
     /// <summary>
+    /// 机型信息缓存锁。
+    /// 【性能优化/正确性】启动阶段多个功能会并发调用 <see cref="GetMachineInformationAsync"/>，
+    /// 原实现仅为「读取缓存 → 计算 → 写回」，并发时会各自完整执行一遍 WMI/注册表扫描（数十次查询）。
+    /// 这里用信号量保证只计算一次，其余调用者直接复用结果。
+    /// </summary>
+    private static readonly SemaphoreSlim MachineInformationLock = new(1, 1);
+
+    /// <summary>
     /// 基础兼容性检查：仅验证本机是否存在 Lenovo GameZone WMI 接口。
     /// </summary>
     /// <returns>存在则返回 true。</returns>
@@ -116,9 +125,29 @@ public static partial class Compatibility
     /// <returns>完整的机器信息对象。</returns>
     public static async Task<MachineInformation> GetMachineInformationAsync()
     {
+        // 命中缓存直接返回（绝大多数调用走这里，无锁开销）
         if (_machineInformation.HasValue)
             return _machineInformation.Value;
 
+        // 【性能优化】并发调用时只放行一个执行完整的 WMI/注册表扫描，其余调用等待后复用结果
+        await MachineInformationLock.WaitAsync().ConfigureAwait(false);
+        try
+        {
+            // 二次检查：等锁期间可能已被其他调用填充
+            return _machineInformation ??= await GetMachineInformationCoreAsync().ConfigureAwait(false);
+        }
+        finally
+        {
+            MachineInformationLock.Release();
+        }
+    }
+
+    /// <summary>
+    /// 实际执行机型信息采集（不含缓存与并发控制，仅由 <see cref="GetMachineInformationAsync"/> 调用）。
+    /// </summary>
+    /// <returns>完整的机器信息对象。</returns>
+    private static async Task<MachineInformation> GetMachineInformationCoreAsync()
+    {
         var (vendor, machineType, model, serialNumber) = await GetModelDataAsync().ConfigureAwait(false);
         var (biosVersion, biosVersionRaw) = GetBIOSVersion();
         var supportedPowerModes = (await GetSupportedPowerModesAsync().ConfigureAwait(false)).ToArray();
@@ -181,8 +210,8 @@ public static partial class Compatibility
             Log.Instance.Trace($"     * HasAlternativeFullSpectrumLayout: '{machineInformation.Properties.HasAlternativeFullSpectrumLayout}'");
         }
 
-        // 将采集结果写入静态缓存，避免重复访问 WMI 与注册表。
-        return (_machineInformation = machineInformation).Value;
+        // 采集结果由调用方写入静态缓存，避免重复访问 WMI 与注册表。
+        return machineInformation;
     }
 
     private static Task<(string, string, string, string)> GetModelDataAsync() => WMI.Win32.ComputerSystemProduct.ReadAsync();

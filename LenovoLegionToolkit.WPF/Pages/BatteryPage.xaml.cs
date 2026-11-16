@@ -86,7 +86,8 @@ public partial class BatteryPage
                     var powerAdapterStatus = await Power.IsPowerAdapterConnectedAsync();
                     var onBatterySince = Battery.GetOnBatterySince();
                     // 界面更新必须回到 UI 线程执行。
-                    Dispatcher.Invoke(() => Set(batteryInfo, powerAdapterStatus, onBatterySince));
+                    // 【性能优化】异步投递更新，轮询线程无需阻塞等待 UI 线程，保持 2 秒节奏稳定
+                    _ = Dispatcher.InvokeAsync(() => Set(batteryInfo, powerAdapterStatus, onBatterySince));
 
                     // 2 秒轮询一次，兼顾及时性与系统开销。
                     await Task.Delay(TimeSpan.FromSeconds(2), token);
