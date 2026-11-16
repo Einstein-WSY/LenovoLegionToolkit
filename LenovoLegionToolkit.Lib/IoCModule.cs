@@ -137,7 +137,7 @@ public class IoCModule : Module
         builder.Register<WindowsPowerPlanController>();
 
         // 联网检查器：检查应用更新与保修信息
-        builder.Register<UpdateChecker>();
+        //builder.Register<UpdateChecker>(); // 【已注释】更新模块已停用
         builder.Register<WarrantyChecker>();
 
         // 驱动/BIOS 包下载器（PCSupport 与 Vantage 两种来源）

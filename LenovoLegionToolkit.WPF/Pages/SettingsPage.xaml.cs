@@ -52,9 +52,9 @@ public partial class SettingsPage
     /// <summary>IPC 服务（CLI 集成）。</summary>
     private readonly IpcServer _ipcServer = IoCContainer.Resolve<IpcServer>();
     /// <summary>更新检查器。</summary>
-    private readonly UpdateChecker _updateChecker = IoCContainer.Resolve<UpdateChecker>();
+    //private readonly UpdateChecker _updateChecker = IoCContainer.Resolve<UpdateChecker>(); // 【已注释】更新模块已停用
     /// <summary>更新检查设置。</summary>
-    private readonly UpdateCheckSettings _updateCheckSettings = IoCContainer.Resolve<UpdateCheckSettings>();
+    //private readonly UpdateCheckSettings _updateCheckSettings = IoCContainer.Resolve<UpdateCheckSettings>(); // 【已注释】更新模块已停用
 
     /// <summary>
     /// 是否正在刷新界面：刷新期间控件取值变化由程序触发，不应回写设置。
@@ -162,6 +162,7 @@ public partial class SettingsPage
 
         _bootLogoCard.Visibility = await BootLogo.IsSupportedAsync() ? Visibility.Visible : Visibility.Collapsed;
 
+        /*
         // 构建时明确禁用更新检查时，隐藏全部更新相关控件。
         if (_updateChecker.Disable)
         {
@@ -175,6 +176,7 @@ public partial class SettingsPage
             _updateCheckFrequencyComboBox.Visibility = Visibility.Visible;
             _updateCheckFrequencyComboBox.SetItems(Enum.GetValues<UpdateCheckFrequency>(), _updateCheckSettings.Store.UpdateCheckFrequency, t => t.GetDisplayName());
         }
+        */ // 【已注释】更新模块已停用，更新相关控件不再显示
 
         try
         {
@@ -715,8 +717,10 @@ public partial class SettingsPage
         window.ShowDialog();
     }
 
+    /*
     /// <summary>
     /// “检查更新”按钮点击：交由主窗口执行更新检查并提示已开始。
+    /// 【已注释】更新模块已停用。
     /// </summary>
     /// <param name="sender">事件源。</param>
     /// <param name="e">路由事件参数。</param>
@@ -734,6 +738,7 @@ public partial class SettingsPage
 
     /// <summary>
     /// 更新检查频率变化：保存频率并刷新检查器的最小刷新间隔。
+    /// 【已注释】更新模块已停用。
     /// </summary>
     /// <param name="sender">事件源。</param>
     /// <param name="e">选择变化参数。</param>
@@ -750,6 +755,7 @@ public partial class SettingsPage
         // 让新频率立即生效，无需重启应用。
         _updateChecker.UpdateMinimumTimeSpanForRefresh();
     }
+    */
 
     /// <summary>
     /// Fn+Q 切换极客模式开关点击：通过 WMI 写入开关值（1 开 / 0 关）。

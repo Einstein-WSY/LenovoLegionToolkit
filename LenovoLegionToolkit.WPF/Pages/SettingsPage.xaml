@@ -226,6 +226,7 @@
             </custom:CardAction.Content>
         </custom:CardAction>
 
+        <!-- 【已注释】更新模块已停用：更新标题、检查更新按钮与检查频率设置不再显示
         <TextBlock
             x:Name="_updateTextBlock"
             Margin="0,16,0,24"
@@ -262,6 +263,7 @@
                 SelectionChanged="UpdateCheckFrequencyComboBox_SelectionChanged"
                 Visibility="Hidden" />
         </custom:CardControl>
+        -->
 
         <TextBlock
             Margin="0,16,0,24"

@@ -43,7 +43,7 @@ public partial class MainWindow
     private readonly VantageDisabler _vantageDisabler = IoCContainer.Resolve<VantageDisabler>();
     private readonly LegionZoneDisabler _legionZoneDisabler = IoCContainer.Resolve<LegionZoneDisabler>();
     private readonly FnKeysDisabler _fnKeysDisabler = IoCContainer.Resolve<FnKeysDisabler>();
-    private readonly UpdateChecker _updateChecker = IoCContainer.Resolve<UpdateChecker>();
+    //private readonly UpdateChecker _updateChecker = IoCContainer.Resolve<UpdateChecker>(); // 【已注释】更新模块已停用
 
     private TrayHelper? _trayHelper;
 
@@ -120,7 +120,7 @@ public partial class MainWindow
 
         LoadDeviceInfo();
         UpdateIndicators();
-        CheckForUpdates();
+        //CheckForUpdates(); // 【已注释】更新模块已停用，不再在启动时检查更新
 
         // Ctrl+Tab / Ctrl+Shift+Tab 在页面间循环切换；Ctrl+数字 直接跳转到对应导航项
         InputBindings.Add(new KeyBinding(new ActionCommand(_navigationStore.NavigateToNext), Key.Tab, ModifierKeys.Control));
@@ -202,7 +202,7 @@ public partial class MainWindow
         if (!IsVisible)
             return;
 
-        CheckForUpdates();
+        //CheckForUpdates(); // 【已注释】更新模块已停用
     }
 
     /// <summary>点击日志指示器时打开日志文件所在位置。</summary>
@@ -229,6 +229,7 @@ public partial class MainWindow
         ShowDeviceInfoWindow();
     }
 
+    /*
     /// <summary>点击更新指示器时打开更新窗口。</summary>
     private void UpdateIndicator_Click(object sender, RoutedEventArgs e) => ShowUpdateWindow();
 
@@ -240,6 +241,7 @@ public partial class MainWindow
 
         ShowUpdateWindow();
     }
+    */
 
     /// <summary>
     /// 在后台读取机器型号，并在 UI 线程回填到设备信息指示器。
@@ -285,8 +287,10 @@ public partial class MainWindow
         });
     }
 
+    /*
     /// <summary>
     /// 检查应用更新；有可用版本时点亮更新指示器，窗口最小化时通过消息中心发送通知。
+    /// 【已注释】更新模块已停用，此方法保留但不再执行任何更新检查。
     /// </summary>
     /// <param name="manualCheck">是否为用户手动触发，手动触发时对检查结果给出显式提示。</param>
     public void CheckForUpdates(bool manualCheck = false)
@@ -329,6 +333,7 @@ public partial class MainWindow
                 }
             }, TaskScheduler.FromCurrentSynchronizationContext());
     }
+    */
 
     /// <summary>
     /// 恢复上次保存的窗口尺寸，并在主显示器工作区内居中显示。
@@ -393,14 +398,17 @@ public partial class MainWindow
         window.ShowDialog();
     }
 
+    /*
     /// <summary>
     /// 以模态方式显示更新窗口。
+    /// 【已注释】更新模块已停用，不再打开更新窗口。
     /// </summary>
     public void ShowUpdateWindow()
     {
         var window = new UpdateWindow { Owner = this };
         window.ShowDialog();
     }
+    */
 
     /// <summary>
     /// 在启用"最小化到托盘"设置时隐藏窗口并降低进程优先级。

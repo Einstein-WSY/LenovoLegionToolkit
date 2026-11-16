@@ -227,7 +227,7 @@ public class NotificationsManager
             // 仅“有新版本”通知支持点击操作
             Action? clickAction = notification.Type switch
             {
-                NotificationType.UpdateAvailable => UpdateAvailableAction,
+                //NotificationType.UpdateAvailable => UpdateAvailableAction, // 【已注释】更新模块已停用
                 _ => null
             };
 
@@ -325,7 +325,9 @@ public class NotificationsManager
         }
     }
 
+    /*
     // 点击“有新版本”通知时：把主窗口置前并打开更新窗口
+    // 【已注释】更新模块已停用
     private static void UpdateAvailableAction()
     {
         if (App.Current.MainWindow is not MainWindow mainWindow)
@@ -334,4 +336,5 @@ public class NotificationsManager
         mainWindow.BringToForeground();
         mainWindow.ShowUpdateWindow();
     }
+    */
 }

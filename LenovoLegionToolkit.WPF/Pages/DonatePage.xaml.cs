@@ -18,12 +18,13 @@ public partial class DonatePage
 
     /// <summary>
     /// PayPal 捐赠按钮点击：打开捐赠链接并标记事件已处理。
+    /// 【已注释】赞助信息功能已停用，事件处理保留但不再执行打开捐赠链接的操作。
     /// </summary>
     /// <param name="sender">事件源。</param>
     /// <param name="e">路由事件参数。</param>
     private void PayPalDonateButton_Click(object sender, RoutedEventArgs e)
     {
-        Constants.PayPalUri.Open();
+        //Constants.PayPalUri.Open();
         e.Handled = true;
     }
 }

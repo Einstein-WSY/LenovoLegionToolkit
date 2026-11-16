@@ -62,7 +62,7 @@ public partial class StatusWindow
         var godModeController = IoCContainer.Resolve<GodModeController>();
         var gpuController = IoCContainer.Resolve<GPUController>();
         var batteryFeature = IoCContainer.Resolve<BatteryFeature>();
-        var updateChecker = IoCContainer.Resolve<UpdateChecker>();
+        //var updateChecker = IoCContainer.Resolve<UpdateChecker>(); // 【已注释】更新模块已停用
 
         PowerModeState? state = null;
         string? godModePresetName = null;
@@ -105,11 +105,15 @@ public partial class StatusWindow
         }
         catch { /* Ignored */ }
 
+        /*
         try
         {
             hasUpdate = await updateChecker.CheckAsync(false) is not null;
         }
-        catch { /* Ignored */ }
+        catch { // Ignored
+        }
+        */ // 【已注释】更新模块已停用，状态浮窗不再检查新版本
+
 
         return new(state, godModePresetName, gpuStatus, batteryInformation, batteryState, hasUpdate);
     }

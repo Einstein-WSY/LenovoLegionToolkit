@@ -9,6 +9,7 @@
     FlowDirection="{x:Static utils:LocalizationHelper.Direction}"
     Scrollable="True">
 
+    <!-- 【已注释】赞助信息展示区域（PayPal 捐赠按钮与二维码）：不再显示
     <StackPanel Margin="0,0,16,12">
         <TextBlock
             Margin="0,16,0,24"
@@ -67,4 +68,6 @@
         </StackPanel>
 
     </StackPanel>
+    -->
+
 </wpfui:UiPage>

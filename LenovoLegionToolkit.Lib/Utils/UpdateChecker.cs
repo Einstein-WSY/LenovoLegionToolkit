@@ -12,6 +12,10 @@ using Octokit.Internal;
 
 namespace LenovoLegionToolkit.Lib.Utils;
 
+/*
+ * 【已注释】更新检查器：更新模块已整体停用，以下实现保留但不再编译。
+ * 如需恢复更新功能，移除此处与各调用点的注释即可。
+ *
 /// <summary>
 /// 基于 GitHub Releases 的更新检查器，负责查询最新版本并下载安装包。
 /// </summary>
@@ -180,3 +184,4 @@ public class UpdateChecker
         _ => throw new ArgumentException(nameof(_updateCheckSettings.Store.UpdateCheckFrequency))
     };
 }
+*/
