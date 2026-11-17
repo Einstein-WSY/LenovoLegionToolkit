@@ -223,7 +223,8 @@ public partial class AutomationPage
             new GodModePresetAutomationStep(default),
             new HDRAutomationStep(default),
             new InstantBootAutomationStep(default),
-            new MacroAutomationStep(default),
+            // 【已注释】宏功能已禁用：不再向自动化步骤清单提供“播放宏”步骤
+            //new MacroAutomationStep(default),
             new MicrophoneAutomationStep(default),
             new SpeakerAutomationStep(default),
             new NotificationAutomationStep(default),

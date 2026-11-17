@@ -22,7 +22,8 @@ using LenovoLegionToolkit.Lib.Features.PanelLogo;
 using LenovoLegionToolkit.Lib.Features.WhiteKeyboardBacklight;
 using LenovoLegionToolkit.Lib.Integrations;
 using LenovoLegionToolkit.Lib.Listeners;
-using LenovoLegionToolkit.Lib.Macro;
+// 【已注释】宏功能已禁用：宏控制器仅在下方注释掉的 InitMacroController 中使用
+//using LenovoLegionToolkit.Lib.Macro;
 using LenovoLegionToolkit.Lib.Services;
 using LenovoLegionToolkit.Lib.SoftwareDisabler;
 using LenovoLegionToolkit.Lib.Utils;
@@ -161,7 +162,8 @@ public partial class App
         await InitHybridModeAsync();
         // 自动化规则需在各硬件功能初始化完成后执行
         await InitAutomationProcessorAsync();
-        InitMacroController();
+        // 【已注释】宏功能已禁用：不再启动宏控制器（不安装全局键盘钩子，宏录制/回放完全失效）
+        // InitMacroController();
 
         // 启动后台服务（AI、HWiNFO 集成、IPC、电池放电监控）
         await IoCContainer.Resolve<AIController>().StartIfNeededAsync();
@@ -655,10 +657,10 @@ public partial class App
         }
     }
 
-    // 启动宏控制器
-    private static void InitMacroController()
-    {
-        var controller = IoCContainer.Resolve<MacroController>();
-        controller.Start();
-    }
+    // 【已注释】宏功能已禁用：整个启动方法停用（调用处一并注释）
+    //private static void InitMacroController()
+    //{
+    //    var controller = IoCContainer.Resolve<MacroController>();
+    //    controller.Start();
+    //}
 }
