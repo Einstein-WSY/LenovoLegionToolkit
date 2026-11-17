@@ -27,11 +27,11 @@ public static class TokenManipulator
     public static bool AddPrivileges(params string[] privileges) => AdjustPrivileges(privileges, true);
 
     /// <summary>
-    /// 调整当前进程令牌中的指定权限（移除语义）。
+    /// 调整当前进程令牌中的指定权限（移除语义，即禁用该权限）。
     /// </summary>
     /// <param name="privileges">权限名称集合。</param>
     /// <returns>全部权限均调整成功时返回 true。</returns>
-    public static bool RemovePrivileges(params string[] privileges) => AdjustPrivileges(privileges, true);
+    public static bool RemovePrivileges(params string[] privileges) => AdjustPrivileges(privileges, false);
 
     /// <summary>
     /// 打开当前进程令牌并逐个调整指定权限。
