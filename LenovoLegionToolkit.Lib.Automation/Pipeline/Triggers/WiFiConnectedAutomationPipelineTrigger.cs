@@ -17,6 +17,7 @@ namespace LenovoLegionToolkit.Lib.Automation.Pipeline.Triggers;
 public class WiFiConnectedAutomationPipelineTrigger(string[] ssids) : IWiFiConnectedPipelineTrigger
 {
     /// <summary>界面显示名称：当 Wi-Fi 连接时。</summary>
+    [JsonIgnore]
     public string DisplayName => Resource.WiFiConnectedAutomationPipelineTrigger_DisplayName;
 
     /// <summary>关注的 SSID 列表；为空表示任意网络。</summary>
@@ -72,9 +73,14 @@ public class WiFiConnectedAutomationPipelineTrigger(string[] ssids) : IWiFiConne
     /// <returns>类型相同且 SSID 顺序一致时返回 true。</returns>
     public override bool Equals(object? obj) => obj is WiFiConnectedAutomationPipelineTrigger t && Ssids.SequenceEqual(t.Ssids);
 
-    /// <summary>基于 SSID 数组生成哈希值。</summary>
+    /// <summary>逐个累加 SSID 生成哈希值，与 Equals 的元素级比较保持一致。</summary>
     /// <returns>哈希值。</returns>
-    public override int GetHashCode() => HashCode.Combine(Ssids);
+    public override int GetHashCode()
+    {
+        var hc = new HashCode();
+        Ssids.ForEach(ssid => hc.Add(ssid));
+        return hc.ToHashCode();
+    }
 
     /// <summary>输出便于日志排查的文本表示。</summary>
     /// <returns>包含 SSID 列表的字符串。</returns>

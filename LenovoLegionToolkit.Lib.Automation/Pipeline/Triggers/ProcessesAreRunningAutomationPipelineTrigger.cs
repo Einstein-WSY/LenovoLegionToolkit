@@ -18,6 +18,7 @@ namespace LenovoLegionToolkit.Lib.Automation.Pipeline.Triggers;
 public class ProcessesAreRunningAutomationPipelineTrigger(ProcessInfo[]? processes) : IProcessesAutomationPipelineTrigger
 {
     /// <summary>界面显示名称：当进程运行时。</summary>
+    [JsonIgnore]
     public string DisplayName => Resource.ProcessesAreRunningAutomationPipelineTrigger_DisplayName;
 
     /// <summary>关注的进程集合。</summary>

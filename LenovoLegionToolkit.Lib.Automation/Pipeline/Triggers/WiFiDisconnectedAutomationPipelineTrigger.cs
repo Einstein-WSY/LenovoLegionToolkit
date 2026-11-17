@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using LenovoLegionToolkit.Lib.Automation.Resources;
 using LenovoLegionToolkit.Lib.System;
+using Newtonsoft.Json;
 
 namespace LenovoLegionToolkit.Lib.Automation.Pipeline.Triggers;
 
@@ -12,6 +13,7 @@ namespace LenovoLegionToolkit.Lib.Automation.Pipeline.Triggers;
 public class WiFiDisconnectedAutomationPipelineTrigger : IWiFiDisconnectedPipelineTrigger
 {
     /// <summary>界面显示名称：当 Wi-Fi 断开时。</summary>
+    [JsonIgnore]
     public string DisplayName => Resource.WiFiDisconnectedAutomationPipelineTrigger_DisplayName;
 
     /// <summary>

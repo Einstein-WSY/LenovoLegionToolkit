@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Microsoft.Win32.SafeHandles;
 using Windows.Win32;
@@ -97,7 +98,7 @@ public static class PInvokeExtensions
     /// 检查上一次 Win32 调用的错误码，若非 0 则抛出异常。
     /// </summary>
     /// <param name="description">用于异常信息的操作描述。</param>
-    /// <exception cref="Exception">存在 Win32 错误或未能取到具体错误时抛出。</exception>
+    /// <exception cref="Win32Exception">存在 Win32 错误时抛出。</exception>
     public static void ThrowIfWin32Error(string description)
     {
         var errorCode = Marshal.GetLastWin32Error();
@@ -105,16 +106,16 @@ public static class PInvokeExtensions
     }
 
     /// <summary>
-    /// 根据指定错误码判断是否失败，并在失败时抛出对应异常。
+    /// 根据指定错误码判断是否失败，失败（错误码非 0）时抛出 <see cref="Win32Exception"/>。
     /// </summary>
-    /// <param name="errorCode">Win32 错误码。</param>
+    /// <param name="errorCode">Win32 错误码；为 0（成功）时不抛出。</param>
     /// <param name="description">用于异常信息的操作描述。</param>
-    /// <exception cref="Exception">错误码非 0，或错误码为 0 但被显式调用要求抛错时抛出。</exception>
+    /// <exception cref="Win32Exception">错误码非 0 时抛出。</exception>
     public static void ThrowIfWin32Error(int errorCode, string description)
     {
-        if (errorCode != 0)
-            throw Marshal.GetExceptionForHR(errorCode) ?? throw new Exception($"Unknown Win32 error code {errorCode} in {description}");
+        if (errorCode == 0)
+            return;
 
-        throw new Exception($"{description} failed but Win32 didn't catch an error");
+        throw new Win32Exception(errorCode, $"{description} failed with Win32 error {errorCode}");
     }
 }

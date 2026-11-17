@@ -38,11 +38,12 @@ public static class RetryHelper
 
         while (!success)
         {
+            // 次数检查必须在 try 之外，否则该异常会被下面的 catch 捕获导致无限循环
+            if (retries >= maximumRetries)
+                throw new MaximumRetriesReachedException();
+
             try
             {
-                if (retries >= maximumRetries)
-                    throw new MaximumRetriesReachedException();
-
                 await action().ConfigureAwait(false);
                 success = true;
             }

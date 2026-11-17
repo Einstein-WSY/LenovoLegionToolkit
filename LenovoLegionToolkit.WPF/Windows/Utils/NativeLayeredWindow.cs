@@ -193,7 +193,7 @@ public class NativeLayeredWindow : NativeWindow, IDisposable
     /// </summary>
     private void UpdateLayeredWindow()
     {
-        Bitmap bitmap = new(Size.Width, Size.Height, PixelFormat.Format32bppArgb);
+        using var bitmap = new Bitmap(Size.Width, Size.Height, PixelFormat.Format32bppArgb);
         using var graphics = Graphics.FromImage(bitmap);
         Rectangle cr = new(0, 0, Size.Width, Size.Height);
         Paint(new(graphics, cr));

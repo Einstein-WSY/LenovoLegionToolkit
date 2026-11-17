@@ -33,8 +33,8 @@ public class SunriseSunset(SunriseSunsetSettings settings, HttpClientFactory htt
 
         (sunrise, sunset) = CalculateSunriseSunset(coordinate);
 
-        // 记录本次计算结果的时间戳与数值，供后续当天读取复用。
-        settings.Store.LastCheckDateTime = DateTime.UtcNow;
+        // 记录本次计算结果的时间戳（本地日期，与缓存判断一致）与数值，供后续当天读取复用。
+        settings.Store.LastCheckDateTime = DateTime.Today;
         settings.Store.Sunrise = sunrise;
         settings.Store.Sunset = sunset;
         settings.SynchronizeStore();

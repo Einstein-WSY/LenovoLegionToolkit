@@ -110,11 +110,7 @@ public partial class MainWindow
         // Fn+N 等特殊按键触发时将窗口激活到前台
         SmartKeyHelper.Instance.BringToForeground = () => Dispatcher.Invoke(BringToForeground);
 
-        _specialKeyListener.Changed += (_, args) =>
-        {
-            if (args.SpecialKey == SpecialKey.FnN)
-                Dispatcher.Invoke(BringToForeground);
-        };
+        _specialKeyListener.Changed += SpecialKeyListener_Changed;
 
         _contentGrid.Visibility = Visibility.Visible;
 
@@ -169,6 +165,12 @@ public partial class MainWindow
     /// </summary>
     private void MainWindow_Closed(object? sender, EventArgs args)
     {
+        _specialKeyListener.Changed -= SpecialKeyListener_Changed;
+
+        _vantageDisabler.OnRefreshed -= VantageDisabler_OnRefreshed;
+        _legionZoneDisabler.OnRefreshed -= LegionZoneDisabler_OnRefreshed;
+        _fnKeysDisabler.OnRefreshed -= FnKeysDisabler_OnRefreshed;
+
         _trayHelper?.Dispose();
         _trayHelper = null;
     }
@@ -251,8 +253,12 @@ public partial class MainWindow
         Task.Run(Compatibility.GetMachineInformationAsync)
             .ContinueWith(mi =>
             {
-                _deviceInfoIndicator.Content = mi.Result.Model;
-                _deviceInfoIndicator.Visibility = Visibility.Visible;
+                try
+                {
+                    _deviceInfoIndicator.Content = mi.Result.Model;
+                    _deviceInfoIndicator.Visibility = Visibility.Visible;
+                }
+                catch { /* Ignored. */ }
             }, TaskScheduler.FromCurrentSynchronizationContext());
     }
 
@@ -264,26 +270,51 @@ public partial class MainWindow
         if (DisableConflictingSoftwareWarning)
             return;
 
-        _vantageDisabler.OnRefreshed += (_, e) => Dispatcher.Invoke(() =>
-        {
-            _vantageIndicator.Visibility = e.Status == SoftwareStatus.Enabled ? Visibility.Visible : Visibility.Collapsed;
-        });
+        _vantageDisabler.OnRefreshed += VantageDisabler_OnRefreshed;
 
-        _legionZoneDisabler.OnRefreshed += (_, e) => Dispatcher.Invoke(() =>
-        {
-            _legionZoneIndicator.Visibility = e.Status == SoftwareStatus.Enabled ? Visibility.Visible : Visibility.Collapsed;
-        });
+        _legionZoneDisabler.OnRefreshed += LegionZoneDisabler_OnRefreshed;
 
-        _fnKeysDisabler.OnRefreshed += (_, e) => Dispatcher.Invoke(() =>
-        {
-            _fnKeysIndicator.Visibility = e.Status == SoftwareStatus.Enabled ? Visibility.Visible : Visibility.Collapsed;
-        });
+        _fnKeysDisabler.OnRefreshed += FnKeysDisabler_OnRefreshed;
 
         Task.Run(async () =>
         {
             _ = await _vantageDisabler.GetStatusAsync().ConfigureAwait(false);
             _ = await _legionZoneDisabler.GetStatusAsync().ConfigureAwait(false);
             _ = await _fnKeysDisabler.GetStatusAsync().ConfigureAwait(false);
+        });
+    }
+
+    /// <summary>特殊按键变化：Fn+N 触发时把主窗口激活到前台。</summary>
+    private void SpecialKeyListener_Changed(object? sender, SpecialKeyListener.ChangedEventArgs args)
+    {
+        if (args.SpecialKey == SpecialKey.FnN)
+            Dispatcher.Invoke(BringToForeground);
+    }
+
+    /// <summary>Vantage 状态刷新：同步冲突软件警告指示器显隐。</summary>
+    private void VantageDisabler_OnRefreshed(object? sender, AbstractSoftwareDisabler.AbstractSoftwareDisablerEventArgs e)
+    {
+        Dispatcher.Invoke(() =>
+        {
+            _vantageIndicator.Visibility = e.Status == SoftwareStatus.Enabled ? Visibility.Visible : Visibility.Collapsed;
+        });
+    }
+
+    /// <summary>Legion Zone 状态刷新：同步冲突软件警告指示器显隐。</summary>
+    private void LegionZoneDisabler_OnRefreshed(object? sender, AbstractSoftwareDisabler.AbstractSoftwareDisablerEventArgs e)
+    {
+        Dispatcher.Invoke(() =>
+        {
+            _legionZoneIndicator.Visibility = e.Status == SoftwareStatus.Enabled ? Visibility.Visible : Visibility.Collapsed;
+        });
+    }
+
+    /// <summary>原厂热键服务状态刷新：同步冲突软件警告指示器显隐。</summary>
+    private void FnKeysDisabler_OnRefreshed(object? sender, AbstractSoftwareDisabler.AbstractSoftwareDisablerEventArgs e)
+    {
+        Dispatcher.Invoke(() =>
+        {
+            _fnKeysIndicator.Visibility = e.Status == SoftwareStatus.Enabled ? Visibility.Visible : Visibility.Collapsed;
         });
     }
 

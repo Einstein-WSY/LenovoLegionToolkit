@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using LenovoLegionToolkit.Lib.Automation.Resources;
+using Newtonsoft.Json;
 
 namespace LenovoLegionToolkit.Lib.Automation.Pipeline.Triggers;
 
@@ -15,6 +15,7 @@ namespace LenovoLegionToolkit.Lib.Automation.Pipeline.Triggers;
 public class PeriodicAutomationPipelineTrigger(TimeSpan period) : IPeriodicAutomationPipelineTrigger
 {
     /// <summary>界面显示名称：按周期执行。</summary>
+    [JsonIgnore]
     public string DisplayName => Resource.PeriodicActionPipelineTrigger_DisplayName;
 
     /// <summary>重复周期。</summary>

@@ -113,8 +113,21 @@ public class IpcServer(
                 catch (Exception ex)
                 {
                     // 业务异常转换为失败响应返回客户端，而非中断服务
-                    var res = new IpcResponse { Success = false, Message = ex.Message };
-                    await pipe.WriteObjectAsync(res, token).ConfigureAwait(false);
+                    try
+                    {
+                        var res = new IpcResponse { Success = false, Message = ex.Message };
+                        await pipe.WriteObjectAsync(res, token).ConfigureAwait(false);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        throw;
+                    }
+                    catch (Exception writeEx)
+                    {
+                        // 客户端断开等原因导致写响应失败时忽略，保持监听循环继续
+                        if (Log.Instance.IsTraceEnabled)
+                            Log.Instance.Trace($"Failed to write response.", writeEx);
+                    }
                 }
                 finally
                 {

@@ -18,6 +18,7 @@ public class UserInactivityAutomationPipelineTrigger(TimeSpan inactivityTimeSpan
     /// <summary>
     /// 界面显示名称：阈值为 0 时表示“用户活跃”，与普通空闲阈值使用不同文案。
     /// </summary>
+    [JsonIgnore]
     public string DisplayName => InactivityTimeSpan == TimeSpan.Zero
         ? Resource.UserInactivityAutomationPipelineTrigger_DisplayName_Zero
         : Resource.UserInactivityAutomationPipelineTrigger_DisplayName;

@@ -15,6 +15,7 @@ namespace LenovoLegionToolkit.Lib.Automation.Pipeline.Triggers;
 public class AndAutomationPipelineTrigger(IAutomationPipelineTrigger[] triggers) : ICompositeAutomationPipelineTrigger
 {
     /// <summary>界面显示名称：逐行拼接各子触发器的名称。</summary>
+    [JsonIgnore]
     public string DisplayName => string.Join(Environment.NewLine, Triggers.Select(t => t.DisplayName));
 
     /// <summary>组成“与”条件的子触发器。</summary>

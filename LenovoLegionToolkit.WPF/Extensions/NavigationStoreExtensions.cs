@@ -18,7 +18,7 @@ public static class NavigationStoreExtensions
         var navigationItems = navigationStore.Items.OfType<INavigationItem>().ToList();
         var current = navigationStore.Current ?? navigationItems.FirstOrDefault();
 
-        if (current is null)
+        if (current is null || navigationItems.Count == 0)
             return;
 
         // 通过取模实现环形遍历，避免越界
@@ -37,7 +37,7 @@ public static class NavigationStoreExtensions
         var navigationItems = navigationStore.Items.OfType<INavigationItem>().ToList();
         var current = navigationStore.Current ?? navigationItems.FirstOrDefault();
 
-        if (current is null)
+        if (current is null || navigationItems.Count == 0)
             return;
 
         var index = navigationItems.IndexOf(current) - 1;

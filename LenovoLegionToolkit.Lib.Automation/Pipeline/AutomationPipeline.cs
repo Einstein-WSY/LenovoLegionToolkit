@@ -48,13 +48,36 @@ public class AutomationPipeline
     {
         get
         {
-            // 普通触发器直接返回自身；复合触发器（如 And）则逐个展开其子项。
-            if (Trigger is not null && Trigger is not ICompositeAutomationPipelineTrigger)
-                yield return Trigger;
+            if (Trigger is null)
+                yield break;
 
-            if (Trigger is ICompositeAutomationPipelineTrigger compositeTrigger)
-                foreach (var trigger in compositeTrigger.Triggers)
-                    yield return trigger;
+            foreach (var trigger in EnumerateTriggers(Trigger, [Trigger]))
+                yield return trigger;
+        }
+    }
+
+    /// <summary>
+    /// 递归展开触发器：普通触发器返回自身；复合触发器则递归展开其全部子触发器，
+    /// 并用引用相等集合防止循环引用导致无限递归。
+    /// </summary>
+    /// <param name="trigger">待展开的触发器。</param>
+    /// <param name="visited">已访问触发器集合（按引用比较）。</param>
+    /// <returns>展开后的叶子触发器序列。</returns>
+    private static IEnumerable<IAutomationPipelineTrigger> EnumerateTriggers(IAutomationPipelineTrigger trigger, HashSet<object> visited)
+    {
+        if (trigger is not ICompositeAutomationPipelineTrigger compositeTrigger)
+        {
+            yield return trigger;
+            yield break;
+        }
+
+        foreach (var innerTrigger in compositeTrigger.Triggers)
+        {
+            if (!visited.Add(innerTrigger))
+                continue;
+
+            foreach (var leafTrigger in EnumerateTriggers(innerTrigger, visited))
+                yield return leafTrigger;
         }
     }
 
@@ -111,6 +134,10 @@ public class AutomationPipeline
             }
             catch (Exception ex)
             {
+                // 取消属于正常中断流程，不属于步骤失败，直接向上抛出。
+                if (ex is OperationCanceledException && token.IsCancellationRequested)
+                    throw;
+
                 if (Log.Instance.IsTraceEnabled)
                     Log.Instance.Trace($"Step run failed. [name={step.GetType().Name}]", ex);
 
@@ -130,21 +157,27 @@ public class AutomationPipeline
     /// 展开执行序列：遇到“快捷操作”步骤时，将其引用的无触发器流水线的步骤就地插入。
     /// </summary>
     /// <param name="pipelines">可被引用的流水线集合。</param>
+    /// <param name="visited">已访问流水线 Id 集合；首次调用为 null 时以当前流水线初始化，用于防止引用环导致无限递归。</param>
     /// <returns>按执行顺序展开后的步骤序列。</returns>
-    private IEnumerable<IAutomationStep> GetAllSteps(List<AutomationPipeline> pipelines)
+    private IEnumerable<IAutomationStep> GetAllSteps(List<AutomationPipeline> pipelines, HashSet<Guid>? visited = null)
     {
+        visited ??= [Id];
+
         foreach (var step in Steps)
         {
             if (step is QuickActionAutomationStep qas)
             {
                 // 只允许引用自身以外、且不带触发器的流水线，防止把自动规则误当作子流程执行。
-                // 递归展开时沿用同一集合，故若存在互相引用会无限展开，需由界面侧保证不构成环。
                 var matchingPipeline = pipelines.FirstOrDefault(p => p.Id != Id && p.Id == qas.PipelineId && p.AllTriggers.IsEmpty());
                 if (matchingPipeline is null)
                     continue;
 
-                foreach (var matchingPipelineStep in matchingPipeline.GetAllSteps(pipelines))
-                    yield return matchingPipelineStep;
+                // 已在本次展开链中访问过的流水线不再递归，避免引用环造成 StackOverflow。
+                if (visited.Add(matchingPipeline.Id))
+                {
+                    foreach (var matchingPipelineStep in matchingPipeline.GetAllSteps(pipelines, visited))
+                        yield return matchingPipelineStep;
+                }
             }
 
             yield return step;

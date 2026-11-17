@@ -23,6 +23,6 @@ public static class ProcessExtensions
         var chars = new char[maxLength];
         return PInvoke.K32GetModuleFileNameEx(process.SafeHandle, null, chars) == 0
             ? null
-            : chars.ToString();
+            : new string(chars).TrimEnd('\0');
     }
 }

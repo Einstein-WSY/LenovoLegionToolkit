@@ -15,6 +15,7 @@ namespace LenovoLegionToolkit.Lib.Automation.Pipeline.Triggers;
 public class PowerModeAutomationPipelineTrigger(PowerModeState powerModeState) : IPowerModeAutomationPipelineTrigger
 {
     /// <summary>界面显示名称：当性能模式切换时。</summary>
+    [JsonIgnore]
     public string DisplayName => Resource.PowerModeAutomationPipelineTrigger_DisplayName;
 
     /// <summary>关注的性能模式。</summary>

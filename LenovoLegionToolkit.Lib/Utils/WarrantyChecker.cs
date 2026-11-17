@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -57,17 +58,22 @@ public class WarrantyChecker(ApplicationSettings settings, HttpClientFactory htt
         var baseWarranties = node["data"]?["baseWarranties"]?.AsArray() ?? [];
         var upgradeWarranties = node["data"]?["upgradeWarranties"]?.AsArray() ?? [];
 
-        // 合并基础与升级保修，取整体区间：最早开始时间与最晚结束时间。
-        var startDate = baseWarranties.Concat(upgradeWarranties)
+        var warranties = baseWarranties.Concat(upgradeWarranties).ToArray();
+
+        // 合并基础与升级保修，取整体区间：最早开始时间与最晚结束时间；集合为空时保持 null，避免 Min/Max 抛异常。
+        var startDates = warranties
             .Select(n => n?["startDate"])
             .Where(n => n is not null)
-            .Select(n => DateTime.Parse(n!.ToString()))
-            .Min();
-        var endDate = baseWarranties.Concat(upgradeWarranties)
+            .Select(n => DateTime.Parse(n!.ToString(), CultureInfo.InvariantCulture))
+            .ToArray();
+        var endDates = warranties
             .Select(n => n?["endDate"])
             .Where(n => n is not null)
-            .Select(n => DateTime.Parse(n!.ToString()))
-            .Max();
+            .Select(n => DateTime.Parse(n!.ToString(), CultureInfo.InvariantCulture))
+            .ToArray();
+
+        var startDate = startDates.Length > 0 ? startDates.Min() : (DateTime?)null;
+        var endDate = endDates.Length > 0 ? endDates.Max() : (DateTime?)null;
 
         var productString = await httpClient.GetStringAsync($"https://pcsupport.lenovo.com/dk/en/api/v4/mse/getproducts?productId={machineInformation.SerialNumber}", token).ConfigureAwait(false);
         var productNode = JsonNode.Parse(productString);

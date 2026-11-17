@@ -34,6 +34,7 @@ public class TimeAutomationPipelineTrigger(bool isSunrise, bool isSunset, Time? 
     public DayOfWeek[] Days { get; } = days ?? [];
 
     /// <summary>界面显示名称：当到达指定时间时。</summary>
+    [JsonIgnore]
     public string DisplayName => Resource.TimeAutomationPipelineTrigger_DisplayName;
 
     // 日出/日落时间依赖地理位置，由全局定位服务计算，需按需拉取。
@@ -111,8 +112,7 @@ public class TimeAutomationPipelineTrigger(bool isSunrise, bool isSunset, Time? 
     public ITimeAutomationPipelineTrigger DeepCopy(bool isSunrise, bool isSunset, Time? time, DayOfWeek[] days) => new TimeAutomationPipelineTrigger(isSunrise, isSunset, time, days);
 
     /// <summary>
-    /// 比较时间条件是否等价。注意 <see cref="Days"/> 为数组，此处使用引用比较，
-    /// 因此仅当两侧共享同一数组实例时才视为相等。
+    /// 比较时间条件是否等价。<see cref="Days"/> 按元素逐一比较。
     /// </summary>
     /// <param name="obj">待比较对象。</param>
     /// <returns>全部条件一致时返回 true。</returns>
@@ -122,12 +122,20 @@ public class TimeAutomationPipelineTrigger(bool isSunrise, bool isSunset, Time? 
                IsSunrise == t.IsSunrise &&
                IsSunset == t.IsSunset &&
                Time == t.Time &&
-               Days == t.Days;
+               Days.SequenceEqual(t.Days);
     }
 
-    /// <summary>基于全部时间条件生成哈希值。</summary>
+    /// <summary>基于全部时间条件生成哈希值，Days 逐元素累加。</summary>
     /// <returns>哈希值。</returns>
-    public override int GetHashCode() => HashCode.Combine(IsSunrise, IsSunset, Time, Days);
+    public override int GetHashCode()
+    {
+        var hc = new HashCode();
+        hc.Add(IsSunrise);
+        hc.Add(IsSunset);
+        hc.Add(Time);
+        Days.ForEach(d => hc.Add(d));
+        return hc.ToHashCode();
+    }
 
     /// <summary>输出便于日志排查的文本表示。</summary>
     /// <returns>包含各时间条件的字符串。</returns>

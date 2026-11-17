@@ -19,6 +19,7 @@ public class ProcessesStopRunningAutomationPipelineTrigger(ProcessInfo[]? proces
     : IProcessesAutomationPipelineTrigger
 {
     /// <summary>界面显示名称：当进程停止时。</summary>
+    [JsonIgnore]
     public string DisplayName => Resource.ProcessesStopRunningAutomationPipelineTrigger_DisplayName;
 
     /// <summary>关注的进程集合。</summary>

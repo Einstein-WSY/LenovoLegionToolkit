@@ -278,8 +278,10 @@ public partial class RGBKeyboardBacklightControl
             return;
 
         // 颜色由 ColorPicker 的 WPF 颜色转为控制器所需的 RGB 结构。
+        // 速度下拉被禁用时会清空选项，此时保留预设中已保存的速度，避免写回默认值。
+        var speed = _speedControl.IsEnabled ? _speedControl.SelectedItem : presets[selectedPreset].Speed;
         presets[selectedPreset] = new(_effectControl.SelectedItem,
-            _speedControl.SelectedItem,
+            speed,
             _brightnessControl.SelectedItem,
             _zone1ColorPicker.SelectedColor.ToRGBColor(),
             _zone2ColorPicker.SelectedColor.ToRGBColor(),

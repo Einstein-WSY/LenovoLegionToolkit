@@ -367,7 +367,8 @@ public static partial class Compatibility
             &capabilities,
             (uint)Marshal.SizeOf<SYSTEM_POWER_CAPABILITIES>());
 
-        if (result.SeverityCode == NTSTATUS.Severity.Success)
+        // 查询失败时无法得知能力，返回 false；成功时读取真实能力值
+        if (result.SeverityCode != NTSTATUS.Severity.Success)
             return (false, false);
 
         return (capabilities.AoAc, capabilities.AoAcConnectivitySupported);

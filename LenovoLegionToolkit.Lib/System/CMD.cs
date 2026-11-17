@@ -54,11 +54,16 @@ public static class CMD
             return (-1, string.Empty);
         }
 
+        // 先启动两个读取任务持续排空管道，再等待进程退出，
+        // 否则子进程写满输出/错误缓冲区后会与 WaitForExitAsync 互相等待形成死锁
+        var outputTask = createNoWindow ? cmd.StandardOutput.ReadToEndAsync(token) : Task.FromResult(string.Empty);
+        var errorTask = createNoWindow ? cmd.StandardError.ReadToEndAsync(token) : Task.FromResult(string.Empty);
+
         await cmd.WaitForExitAsync(token).ConfigureAwait(false);
 
         var exitCode = cmd.ExitCode;
-        // 只有重定向了输出才能读取；此处等待退出后再读取可避免缓冲区阻塞
-        var output = createNoWindow ? await cmd.StandardOutput.ReadToEndAsync(token).ConfigureAwait(false) : string.Empty;
+        var output = await outputTask.ConfigureAwait(false);
+        _ = await errorTask.ConfigureAwait(false);
 
         if (Log.Instance.IsTraceEnabled)
             Log.Instance.Trace($"Ran [file={file}, argument={arguments}, createNoWindow={createNoWindow}, waitForExit={waitForExit}, exitCode={exitCode} output={output}]");

@@ -148,7 +148,8 @@ public class ProcessAutoListener(
         if (Log.Instance.IsTraceEnabled)
             Log.Instance.Trace($"Cleaning up process cache. Current size: {_processCache.Count}.");
 
-        foreach (var (processId, _) in _processCache)
+        // 遍历期间会移除元素，必须先快照，否则会抛 InvalidOperationException
+        foreach (var (processId, _) in _processCache.ToArray())
         {
             try
             {

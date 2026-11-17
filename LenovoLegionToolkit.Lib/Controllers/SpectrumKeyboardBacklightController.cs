@@ -728,6 +728,10 @@ public class SpectrumKeyboardBacklightController
                 if (Log.Instance.IsTraceEnabled)
                     Log.Instance.Trace($"Handle refreshed.");
 
+                // 释放已失效的旧句柄，避免句柄泄漏（此段受 GetDeviceHandleLock 保护）
+                if (_deviceHandle is not null)
+                    _deviceHandle.Dispose();
+
                 _deviceHandle = newDeviceHandle;
                 return newDeviceHandle;
             }

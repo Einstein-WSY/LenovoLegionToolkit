@@ -102,7 +102,7 @@ public static class Devices
 
         var chars = new char[requiredSize];
         PInvoke.SetupDiClassNameFromGuid(guid, chars, null);
-        return chars.ToString() ?? string.Empty;
+        return new string(chars).TrimEnd('\0');
     }
 
     /// <summary>
@@ -409,7 +409,11 @@ public static class Devices
                 null);
 
             if (!PInvoke.HidD_GetAttributes(fileHandle, out var hidAttributes))
+            {
+                // 查询属性失败也必须释放已打开的句柄，否则泄漏
+                fileHandle.Dispose();
                 continue;
+            }
 
             PHIDP_PREPARSED_DATA preParsedData = default;
             try
@@ -431,6 +435,9 @@ public static class Devices
                 // 预解析数据由系统分配，必须显式释放，否则会泄漏非托管内存
                 PInvoke.HidD_FreePreparsedData(preParsedData);
             }
+
+            // 能力不匹配（未在上面 return），释放句柄后继续枚举下一个设备
+            fileHandle.Dispose();
         }
 
         return null;

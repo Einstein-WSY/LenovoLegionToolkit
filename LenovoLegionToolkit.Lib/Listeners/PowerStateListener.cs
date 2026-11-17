@@ -172,23 +172,32 @@ public class PowerStateListener : IListener<PowerStateListener.ChangedEventArgs>
             // 唤醒后驱动与固件状态可能被重置，异步重新应用各项设置；放后台执行避免阻塞事件回调
             _ = Task.Run(async () =>
             {
-                if (await _batteryFeature.IsSupportedAsync().ConfigureAwait(false))
-                    await _batteryFeature.EnsureCorrectBatteryModeIsSetAsync().ConfigureAwait(false);
-
-                if (await _rgbController.IsSupportedAsync().ConfigureAwait(false))
-                    await _rgbController.SetLightControlOwnerAsync(true, true).ConfigureAwait(false);
-
-                if (await _powerModeFeature.IsSupportedAsync().ConfigureAwait(false))
+                try
                 {
-                    await _powerModeFeature.EnsureCorrectWindowsPowerSettingsAreSetAsync().ConfigureAwait(false);
-                    await _powerModeFeature.EnsureGodModeStateIsAppliedAsync().ConfigureAwait(false);
+                    if (await _batteryFeature.IsSupportedAsync().ConfigureAwait(false))
+                        await _batteryFeature.EnsureCorrectBatteryModeIsSetAsync().ConfigureAwait(false);
+
+                    if (await _rgbController.IsSupportedAsync().ConfigureAwait(false))
+                        await _rgbController.SetLightControlOwnerAsync(true, true).ConfigureAwait(false);
+
+                    if (await _powerModeFeature.IsSupportedAsync().ConfigureAwait(false))
+                    {
+                        await _powerModeFeature.EnsureCorrectWindowsPowerSettingsAreSetAsync().ConfigureAwait(false);
+                        await _powerModeFeature.EnsureGodModeStateIsAppliedAsync().ConfigureAwait(false);
+                    }
+
+                    if (await _dgpuNotify.IsSupportedAsync().ConfigureAwait(false))
+                    {
+                        // 唤醒后显卡驱动就绪需要时间，延迟 5 秒再发起独显切换通知
+                        await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
+                        await _dgpuNotify.NotifyAsync().ConfigureAwait(false);
+                    }
                 }
-
-                if (await _dgpuNotify.IsSupportedAsync().ConfigureAwait(false))
+                catch (Exception ex)
                 {
-                    // 唤醒后显卡驱动就绪需要时间，延迟 5 秒再发起独显切换通知
-                    await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
-                    await _dgpuNotify.NotifyAsync().ConfigureAwait(false);
+                    // 后台恢复任务失败时仅记录日志，避免未观察异常
+                    if (Log.Instance.IsTraceEnabled)
+                        Log.Instance.Trace($"Failed to re-apply settings after resume.", ex);
                 }
             });
         }
@@ -198,13 +207,22 @@ public class PowerStateListener : IListener<PowerStateListener.ChangedEventArgs>
             // 接入电源时重新应用 God Mode 并通知独显，确保性能状态与供电状态一致
             _ = Task.Run(async () =>
             {
-                if (await _powerModeFeature.IsSupportedAsync().ConfigureAwait(false))
-                    await _powerModeFeature.EnsureGodModeStateIsAppliedAsync().ConfigureAwait(false);
-
-                if (await _dgpuNotify.IsSupportedAsync().ConfigureAwait(false))
+                try
                 {
-                    await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
-                    await _dgpuNotify.NotifyAsync().ConfigureAwait(false);
+                    if (await _powerModeFeature.IsSupportedAsync().ConfigureAwait(false))
+                        await _powerModeFeature.EnsureGodModeStateIsAppliedAsync().ConfigureAwait(false);
+
+                    if (await _dgpuNotify.IsSupportedAsync().ConfigureAwait(false))
+                    {
+                        await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(false);
+                        await _dgpuNotify.NotifyAsync().ConfigureAwait(false);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // 后台恢复任务失败时仅记录日志，避免未观察异常
+                    if (Log.Instance.IsTraceEnabled)
+                        Log.Instance.Trace($"Failed to re-apply settings after power status change.", ex);
                 }
             });
         }

@@ -30,6 +30,9 @@ public abstract class AbstractComboBoxFeatureCardControl<T> : AbstractRefreshing
 
     private readonly ComboBox _comboBox = new();
 
+    // 防止 Loaded 重复触发时多次订阅消息
+    private bool _subscribed;
+
     /// <summary>卡片图标。</summary>
     protected SymbolRegular Icon
     {
@@ -125,6 +128,11 @@ public abstract class AbstractComboBoxFeatureCardControl<T> : AbstractRefreshing
     /// <summary>加载完成后订阅功能状态变更消息，在可见时自动刷新。</summary>
     protected override void OnFinishedLoading()
     {
+        if (_subscribed)
+            return;
+
+        _subscribed = true;
+
         MessagingCenter.Subscribe<FeatureStateMessage<T>>(this, () => Dispatcher.InvokeTask(async () =>
         {
             if (!IsVisible)

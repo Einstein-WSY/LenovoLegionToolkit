@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LenovoLegionToolkit.Lib.Extensions;
 using LenovoLegionToolkit.Lib.Utils;
+using NeoSmart.AsyncLock;
 using Windows.Win32;
 using Windows.Win32.UI.Input.KeyboardAndMouse;
 using Windows.Win32.UI.WindowsAndMessaging;
@@ -25,6 +26,9 @@ internal class MacroPlayer
 
     private Task _playTask = Task.CompletedTask;
     private CancellationTokenSource _cancellationTokenSource = new();
+
+    // 串行化 StartPlayingAsync 的“取消旧任务-等待-替换”序列，避免并发调用产生竞态
+    private readonly AsyncLock _startLock = new();
 
     /// <summary>
     /// 若当前正在播放可中断的宏，且检测到真实用户输入，则取消当前回放。
@@ -51,45 +55,49 @@ internal class MacroPlayer
     /// <returns>回放任务完成的异步任务。</returns>
     public async Task StartPlayingAsync(MacroSequence sequence)
     {
-        // 取消上一次回放，并等待其退出，避免两次回放的输入交错
-        await _cancellationTokenSource.CancelAsync();
-        try { await _playTask; }
-        catch (OperationCanceledException) { }
-
-        _cancellationTokenSource = new();
-        var token = _cancellationTokenSource.Token;
-
-        _playTask = Task.Run(async () =>
+        // 旧回放任务不会获取 _startLock，持锁等待其退出不会死锁
+        using (await _startLock.LockAsync().ConfigureAwait(false))
         {
-            _isPlayingInterruptableSequence.Value = sequence.InterruptOnOtherKey;
+            // 取消上一次回放，并等待其退出，避免两次回放的输入交错
+            await _cancellationTokenSource.CancelAsync();
+            try { await _playTask; }
+            catch (OperationCanceledException) { }
 
-            for (var i = 0; i < sequence.RepeatCount; i++)
+            _cancellationTokenSource = new();
+            var token = _cancellationTokenSource.Token;
+
+            _playTask = Task.Run(async () =>
             {
-                foreach (var macroEvent in sequence.Events ?? [])
+                _isPlayingInterruptableSequence.Value = sequence.InterruptOnOtherKey;
+
+                for (var i = 0; i < sequence.RepeatCount; i++)
                 {
-                    // 事件延迟是相对上一事件的相对时间，按录制顺序依次等待即可还原原始节奏
-                    if (!sequence.IgnoreDelays)
-                        await Task.Delay(macroEvent.Delay, token).ConfigureAwait(false);
-
-                    token.ThrowIfCancellationRequested();
-
-                    try
+                    foreach (var macroEvent in sequence.Events ?? [])
                     {
-                        // SendInput 的绝对坐标基于主屏工作区归一化到 0-65535
-                        var input = ToInput(macroEvent, Screen.PrimaryScreen?.WorkingArea ?? Rectangle.Empty);
-                        var result = PInvoke.SendInput(MemoryMarshal.CreateSpan(ref input, 1), Marshal.SizeOf<INPUT>());
-                        if (result == 0)
-                            PInvokeExtensions.ThrowIfWin32Error($"Failed to send input. Return code was {result}.");
-                    }
-                    catch (Exception ex)
-                    {
-                        // 单个事件失败不应中断整个宏，仅记录日志后继续
-                        if (Log.Instance.IsTraceEnabled)
-                            Log.Instance.Trace($"Failed to send input for event {macroEvent}", ex);
+                        // 事件延迟是相对上一事件的相对时间，按录制顺序依次等待即可还原原始节奏
+                        if (!sequence.IgnoreDelays)
+                            await Task.Delay(macroEvent.Delay, token).ConfigureAwait(false);
+
+                        token.ThrowIfCancellationRequested();
+
+                        try
+                        {
+                            // SendInput 的 MOUSEEVENTF_ABSOLUTE 坐标按整个屏幕边界归一化到 0-65535
+                            var input = ToInput(macroEvent, Screen.PrimaryScreen?.Bounds ?? Rectangle.Empty);
+                            var result = PInvoke.SendInput(MemoryMarshal.CreateSpan(ref input, 1), Marshal.SizeOf<INPUT>());
+                            if (result == 0)
+                                PInvokeExtensions.ThrowIfWin32Error($"Failed to send input. Return code was {result}.");
+                        }
+                        catch (Exception ex)
+                        {
+                            // 单个事件失败不应中断整个宏，仅记录日志后继续
+                            if (Log.Instance.IsTraceEnabled)
+                                Log.Instance.Trace($"Failed to send input for event {macroEvent}", ex);
+                        }
                     }
                 }
-            }
-        }, token);
+            }, token);
+        }
     }
 
     /// <summary>

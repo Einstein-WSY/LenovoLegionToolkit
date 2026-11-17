@@ -70,8 +70,7 @@ public class VantagePackageDownloader(HttpClientFactory httpClientFactory)
 
             count++;
 
-            // ReSharper disable once PossibleLossOfFraction
-            progress?.Report(count * 100 / totalCount);
+            progress?.Report((float)count / totalCount);
         }
 
         return packages;
@@ -136,8 +135,10 @@ public class VantagePackageDownloader(HttpClientFactory httpClientFactory)
     private static async Task<Package> GetPackage(HttpClient httpClient, VantagePackageUpdateDetector updateDetector, PackageDefinition packageDefinition, CancellationToken token)
     {
         var location = packageDefinition.Location;
-        // 去掉最后一段文件名，得到包所在目录，用于拼接文件下载地址。
-        var baseLocation = location.Remove(location.LastIndexOf("/", StringComparison.InvariantCultureIgnoreCase));
+        // 去掉最后一段文件名，得到包所在目录，用于拼接文件下载地址；location 不含 "/" 时保持原值
+        var baseLocation = location.Contains("/")
+            ? location.Remove(location.LastIndexOf("/", StringComparison.InvariantCultureIgnoreCase))
+            : location;
 
         var packageString = await httpClient.GetStringAsync(location, token).ConfigureAwait(false);
 

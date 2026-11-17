@@ -450,11 +450,11 @@ public partial class SettingsPage
         if (_isRefreshing)
             return;
 
-        _vantageToggle.IsEnabled = false;
-
         var state = _vantageToggle.IsChecked;
         if (state is null)
             return;
+
+        _vantageToggle.IsEnabled = false;
 
         if (state.Value)
         {
@@ -573,11 +573,11 @@ public partial class SettingsPage
         if (_isRefreshing)
             return;
 
-        _legionZoneToggle.IsEnabled = false;
-
         var state = _legionZoneToggle.IsChecked;
         if (state is null)
             return;
+
+        _legionZoneToggle.IsEnabled = false;
 
         if (state.Value)
         {
@@ -617,11 +617,11 @@ public partial class SettingsPage
         if (_isRefreshing)
             return;
 
-        _fnKeysToggle.IsEnabled = false;
-
         var state = _fnKeysToggle.IsChecked;
         if (state is null)
             return;
+
+        _fnKeysToggle.IsEnabled = false;
 
         if (state.Value)
         {
@@ -773,9 +773,19 @@ public partial class SettingsPage
 
         _godModeFnQSwitchableToggle.IsEnabled = false;
 
-        await WMI.LenovoOtherMethod.SetFeatureValueAsync(CapabilityID.GodModeFnQSwitchable, state.Value ? 1 : 0);
-
-        _godModeFnQSwitchableToggle.IsEnabled = true;
+        try
+        {
+            await WMI.LenovoOtherMethod.SetFeatureValueAsync(CapabilityID.GodModeFnQSwitchable, state.Value ? 1 : 0);
+        }
+        catch (Exception ex)
+        {
+            if (Log.Instance.IsTraceEnabled)
+                Log.Instance.Trace($"Couldn't set GodModeFnQSwitchable feature value.", ex);
+        }
+        finally
+        {
+            _godModeFnQSwitchableToggle.IsEnabled = true;
+        }
     }
 
     /// <summary>

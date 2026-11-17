@@ -453,7 +453,7 @@ public class AutomationProcessor(
             await userInactivityAutoListener.SubscribeChangedAsync(UserInactivityAutoListener_Changed).ConfigureAwait(false);
         }
 
-        if (triggers.OfType<IWiFiConnectedPipelineTrigger>().Any() || triggers.OfType<WiFiDisconnectedAutomationPipelineTrigger>().Any())
+        if (triggers.OfType<IWiFiConnectedPipelineTrigger>().Any() || triggers.OfType<IWiFiDisconnectedPipelineTrigger>().Any())
         {
             if (Log.Instance.IsTraceEnabled)
                 Log.Instance.Trace($"Starting WiFi listener...");

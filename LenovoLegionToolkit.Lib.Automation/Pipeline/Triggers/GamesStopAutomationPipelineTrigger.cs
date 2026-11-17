@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using LenovoLegionToolkit.Lib.AutoListeners;
 using LenovoLegionToolkit.Lib.Automation.Resources;
+using Newtonsoft.Json;
 
 namespace LenovoLegionToolkit.Lib.Automation.Pipeline.Triggers;
 
@@ -11,6 +12,7 @@ namespace LenovoLegionToolkit.Lib.Automation.Pipeline.Triggers;
 public class GamesStopAutomationPipelineTrigger : IGameAutomationPipelineTrigger
 {
     /// <summary>界面显示名称：当游戏停止时。</summary>
+    [JsonIgnore]
     public string DisplayName => Resource.GamesStopAutomationPipelineTrigger_DisplayName;
 
     /// <summary>

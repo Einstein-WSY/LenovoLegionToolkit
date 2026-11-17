@@ -92,8 +92,26 @@ internal class MacroRecorder
         _timeFromLastEvent = TimeSpan.Zero;
         _settings = settings;
 
-        _kbHook = PInvoke.SetWindowsHookEx(WINDOWS_HOOK_ID.WH_KEYBOARD_LL, _kbProc, HINSTANCE.Null, 0);
-        _mouseHook = PInvoke.SetWindowsHookEx(WINDOWS_HOOK_ID.WH_MOUSE_LL, _mouseProc, HINSTANCE.Null, 0);
+        // 清除上一会话遗留的按下状态，避免跨会话误判自动重复
+        _rolloverCache.Clear();
+
+        var kbHook = PInvoke.SetWindowsHookEx(WINDOWS_HOOK_ID.WH_KEYBOARD_LL, _kbProc, HINSTANCE.Null, 0);
+        var mouseHook = PInvoke.SetWindowsHookEx(WINDOWS_HOOK_ID.WH_MOUSE_LL, _mouseProc, HINSTANCE.Null, 0);
+
+        // 任一钩子安装失败时卸载已成功的钩子，避免留下泄漏的钩子
+        if (kbHook == HHOOK.Null || mouseHook == HHOOK.Null)
+        {
+            if (kbHook != HHOOK.Null)
+                PInvoke.UnhookWindowsHookEx(kbHook);
+            if (mouseHook != HHOOK.Null)
+                PInvoke.UnhookWindowsHookEx(mouseHook);
+
+            return;
+        }
+
+        _kbHook = kbHook;
+        _mouseHook = mouseHook;
+
         // 锁屏、注销、远程连接切换时钩子可能失效，需要在会话切换时主动结束录制
         SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
     }
@@ -103,18 +121,28 @@ internal class MacroRecorder
     /// </summary>
     public void StopRecording()
     {
-        if (!IsRecording)
+        var kbHookInstalled = _kbHook != HHOOK.Null;
+        var mouseHookInstalled = _mouseHook != HHOOK.Null;
+
+        if (!kbHookInstalled && !mouseHookInstalled)
             return;
 
         var wasInterrupted = _interrupted;
 
         SystemEvents.SessionSwitch -= SystemEvents_SessionSwitch;
 
-        PInvoke.UnhookWindowsHookEx(_kbHook);
-        PInvoke.UnhookWindowsHookEx(_mouseHook);
+        // 两个钩子分别判断并卸载，避免整体早退导致部分钩子泄漏
+        if (kbHookInstalled)
+        {
+            PInvoke.UnhookWindowsHookEx(_kbHook);
+            _kbHook = HHOOK.Null;
+        }
 
-        _kbHook = default;
-        _mouseHook = default;
+        if (mouseHookInstalled)
+        {
+            PInvoke.UnhookWindowsHookEx(_mouseHook);
+            _mouseHook = HHOOK.Null;
+        }
 
         _interrupted = false;
         _timeFromLastEvent = TimeSpan.Zero;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -52,7 +53,8 @@ public class TrayHelper : IDisposable
 
         var notifyIcon = new NotifyIcon
         {
-            Icon = AssetResources.icon,
+            // 使用共享图标的独立副本，避免 NotifyIcon.Dispose 释放 AssetResources 缓存实例
+            Icon = new Icon(AssetResources.icon, AssetResources.icon.Size),
             Text = Resource.AppName
         };
 
@@ -64,7 +66,7 @@ public class TrayHelper : IDisposable
         _notifyIcon = notifyIcon;
 
         // 主题切换后让菜单使用最新的应用资源
-        _themeManager.ThemeApplied += (_, _) => _contextMenu.Resources = App.Current.Resources;
+        _themeManager.ThemeApplied += ThemeManager_ThemeApplied;
     }
 
     /// <summary>
@@ -76,7 +78,7 @@ public class TrayHelper : IDisposable
         pipelines = pipelines.Where(p => p.Trigger is null).ToList();
         SetAutomationItems(pipelines);
 
-        _automationProcessor.PipelinesChanged += (_, p) => SetAutomationItems(p);
+        _automationProcessor.PipelinesChanged += AutomationProcessor_PipelinesChanged;
     }
 
     // 生成导航项、打开/关闭等静态菜单项
@@ -157,6 +159,18 @@ public class TrayHelper : IDisposable
         }
     }
 
+    /// <summary>主题切换回调：让菜单使用最新的应用资源。</summary>
+    private void ThemeManager_ThemeApplied(object? sender, EventArgs args)
+    {
+        _contextMenu.Resources = App.Current.Resources;
+    }
+
+    /// <summary>自动化流程变更回调：重建快捷操作菜单项。</summary>
+    private void AutomationProcessor_PipelinesChanged(object? sender, List<AutomationPipeline> pipelines)
+    {
+        SetAutomationItems(pipelines);
+    }
+
     /// <summary>显示托盘图标。</summary>
     public void MakeVisible()
     {
@@ -170,6 +184,9 @@ public class TrayHelper : IDisposable
     public void Dispose()
     {
         GC.SuppressFinalize(this);
+
+        _themeManager.ThemeApplied -= ThemeManager_ThemeApplied;
+        _automationProcessor.PipelinesChanged -= AutomationProcessor_PipelinesChanged;
 
         if (_notifyIcon is not null)
             _notifyIcon.Visible = false;

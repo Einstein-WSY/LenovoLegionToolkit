@@ -112,14 +112,22 @@ public partial class WindowsPowerModeController(ApplicationSettings settings, IM
         if (PInvoke.PowerGetActiveScheme(null, out var guid) != WIN32_ERROR.ERROR_SUCCESS)
             PInvokeExtensions.ThrowIfWin32Error("PowerGetActiveScheme");
 
-        if (DefaultPowerPlan == *guid)
-            return;
+        try
+        {
+            if (DefaultPowerPlan == *guid)
+                return;
 
-        if (PInvoke.PowerSetActiveScheme(null, DefaultPowerPlan) != WIN32_ERROR.ERROR_SUCCESS)
-            PInvokeExtensions.ThrowIfWin32Error("PowerSetActiveScheme");
+            if (PInvoke.PowerSetActiveScheme(null, DefaultPowerPlan) != WIN32_ERROR.ERROR_SUCCESS)
+                PInvokeExtensions.ThrowIfWin32Error("PowerSetActiveScheme");
 
-        if (Log.Instance.IsTraceEnabled)
-            Log.Instance.Trace($"Activated default power plan.");
+            if (Log.Instance.IsTraceEnabled)
+                Log.Instance.Trace($"Activated default power plan.");
+        }
+        finally
+        {
+            // PowerGetActiveScheme 分配的缓冲区需调用方用 LocalFree 释放（FreeHGlobal 即调用 LocalFree）
+            Marshal.FreeHGlobal(new IntPtr(guid));
+        }
     }
 
     // powrprof.dll 导出的电源模式覆盖接口（需要 Windows 11）

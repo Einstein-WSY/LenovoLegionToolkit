@@ -122,8 +122,9 @@ public abstract partial class AbstractDGPUNotify : IDGPUNotify
             return false;
 
         var guidDisplayDeviceArrival = PInvoke.GUID_DISPLAY_DEVICE_ARRIVAL;
-        // 只枚举"当前存在"的显示设备接口（DIGCF_PRESENT），避免把已弹出的独显当成可用
-        var deviceHandle = PInvoke.SetupDiGetClassDevs(guidDisplayDeviceArrival,
+        // 只枚举"当前存在"的显示设备接口（DIGCF_PRESENT），避免把已弹出的独显当成可用；
+        // 设备信息集句柄必须用 using 释放，否则泄漏
+        using var deviceHandle = PInvoke.SetupDiGetClassDevs(guidDisplayDeviceArrival,
             null,
             HWND.Null,
             SETUP_DI_GET_CLASS_DEVS_FLAGS.DIGCF_DEVICEINTERFACE | SETUP_DI_GET_CLASS_DEVS_FLAGS.DIGCF_PRESENT | SETUP_DI_GET_CLASS_DEVS_FLAGS.DIGCF_PROFILE);

@@ -192,7 +192,15 @@ public class WindowsPowerPlanController(ApplicationSettings settings, VantageDis
         if (PInvoke.PowerGetActiveScheme(null, out var guid) != WIN32_ERROR.ERROR_SUCCESS)
             PInvokeExtensions.ThrowIfWin32Error("PowerGetActiveScheme");
 
-        return *guid;
+        try
+        {
+            return *guid;
+        }
+        finally
+        {
+            // PowerGetActiveScheme 分配的缓冲区需调用方用 LocalFree 释放（FreeHGlobal 即调用 LocalFree）
+            Marshal.FreeHGlobal(new IntPtr(guid));
+        }
     }
 
     private static void SetActivePowerPlan(Guid powerPlanGuid)
