@@ -57,8 +57,9 @@ public readonly struct Flags
     /// <returns>等号后的内容；未找到匹配项时返回 <see langword="null"/>。</returns>
     private static string? StringValue(IEnumerable<string> values, string key)
     {
-        // 跳过参数名与等号（key.Length + 1），取剩余部分作为值
-        var value = values.FirstOrDefault(s => s.StartsWith(key));
-        return value?.Remove(0, key.Length + 1);
+        // 要求 key 后紧跟 '='，避免 "-qa" 误匹配 "-qa2=..." 这类更长参数名；
+        // 同时保证后续截取不会越界。
+        var value = values.FirstOrDefault(s => s.StartsWith(key + '='));
+        return value is null ? null : value[(key.Length + 1)..];
     }
 }
