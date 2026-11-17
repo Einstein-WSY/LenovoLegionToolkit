@@ -51,11 +51,12 @@ public static class PipeStreamExtensions
         var buffer = new byte[1024];
         var builder = new StringBuilder();
 
-        // 一条消息可能跨多次读取，需循环累加直到 IsMessageComplete 为 true
+        // 一条消息可能跨多次读取，需循环累加直到 IsMessageComplete 为 true。
+        // 只解码实际读取的字节数：解码整个缓冲区会把尾部残留的 \0 混入消息。
         do
         {
-            _ = await stream.ReadAsync(buffer, token).ConfigureAwait(false);
-            builder.Append(Encoding.GetString(buffer));
+            var bytesRead = await stream.ReadAsync(buffer, token).ConfigureAwait(false);
+            builder.Append(Encoding.GetString(buffer, 0, bytesRead));
         } while (!stream.IsMessageComplete);
 
         return JsonConvert.DeserializeObject<T>(builder.ToString());
