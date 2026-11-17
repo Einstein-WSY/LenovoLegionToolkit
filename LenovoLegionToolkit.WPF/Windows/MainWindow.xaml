@@ -131,13 +131,6 @@
                         Icon="Settings24"
                         PageTag="settings"
                         PageType="{x:Type pages:SettingsPage}" />
-                    <!-- 【已注释】赞助/捐赠页面入口：不再显示捐赠导航项
-                    <custom:NavigationItem
-                        Content="{x:Static resources:Resource.MainWindow_NavigationItem_Donate}"
-                        Icon="Money24"
-                        PageTag="donate"
-                        PageType="{x:Type pages:DonatePage}" />
-                    -->
                     <custom:NavigationItem
                         Content="{x:Static resources:Resource.MainWindow_NavigationItem_About}"
                         Icon="Info24"
@@ -234,27 +227,6 @@
                     Text="{x:Static resources:Resource.MainWindows_FnKeysRunning}" />
             </StackPanel>
         </Border>
-
-        <!-- 【已注释】更新提示指示器：更新模块已停用，不再显示"有新版本"提示
-        <Border
-            x:Name="_updateIndicator"
-            Grid.Row="5"
-            Padding="8,4,8,6"
-            Background="{DynamicResource SystemFillColorSuccessBrush}"
-            Cursor="Hand"
-            MouseLeftButtonDown="UpdateIndicator_Click"
-            MouseRightButtonDown="UpdateIndicator_Click"
-            Visibility="Collapsed">
-            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                <wpfui:SymbolIcon Margin="0,0,4,0" Symbol="ArrowSync24" />
-                <TextBlock
-                    x:Name="_updateIndicatorText"
-                    Focusable="True"
-                    KeyDown="UpdateIndicator_KeyDown"
-                    Text="{x:Static resources:Resource.MainWindow_UpdateAvailable}" />
-            </StackPanel>
-        </Border>
-        -->
 
     </Grid>
 </local:BaseWindow>

@@ -455,11 +455,7 @@
   </data>
   <data name="DeviceInformationWindow_Device_Title" xml:space="preserve">
     <value>Устройство</value>
-  </data>
-  <data name="DeviceInformationWindow_LenovoSupport" xml:space="preserve">
-    <value>Поддержка Lenovo</value>
-  </data>
-  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
+  </data>  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
     <value>Тип модели устройства</value>
   </data>
   <data name="DeviceInformationWindow_Manufacturer_Title" xml:space="preserve">
@@ -473,17 +469,7 @@
   </data>
   <data name="DeviceInformationWindow_Title" xml:space="preserve">
     <value>О вашем устройстве</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyEndDate_Title" xml:space="preserve">
-    <value>Дата окончания гарантии</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyStartDate_Title" xml:space="preserve">
-    <value>Начало действия гарантии</value>
-  </data>
-  <data name="DeviceInformationWindow_Warranty_Title" xml:space="preserve">
-    <value>Гарантия</value>
-  </data>
-  <data name="Active" xml:space="preserve">
+  </data>  <data name="Active" xml:space="preserve">
     <value>Активен</value>
   </data>
   <data name="DiscreteGPUControl_Deactivate" xml:space="preserve">
@@ -527,21 +513,7 @@
   </data>
   <data name="DisplayBrightnessAutomationStepControl_Title" xml:space="preserve">
     <value>Яркость дисплея</value>
-  </data>
-  <data name="DonatePage_DonateWith" xml:space="preserve">
-    <value>Сделать пожертвование через</value>
-  </data>
-  <data name="DonatePage_Message" xml:space="preserve">
-    <value>На разработку и обслуживание Lenovo Legion Toolkit уходит много времени. Если вам нравится пользоваться этим программным обеспечением, вы можете поддержать его будущее, пожертвовав любую сумму денег.
-
-Нажмите на логотип PayPal ниже или отсканируйте QR-код, чтобы сделать пожертвование через PayPal.
-
-Заранее спасибо!</value>
-  </data>
-  <data name="DonatePage_Title" xml:space="preserve">
-    <value>Сделать пожертвование</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
+  </data>  <data name="Edit" xml:space="preserve">
     <value>Редактировать</value>
   </data>
   <data name="ExcludeRefreshRatesWindow_Description" xml:space="preserve">
@@ -759,11 +731,7 @@
   </data>
   <data name="MainWindow_NavigationItem_Dashboard" xml:space="preserve">
     <value>Обзор</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Donate" xml:space="preserve">
-    <value>Донат</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
+  </data>  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
     <value>Клавиатура</value>
   </data>
   <data name="MainWindow_NavigationItem_Packages" xml:space="preserve">
@@ -771,14 +739,7 @@
   </data>
   <data name="MainWindow_NavigationItem_Settings" xml:space="preserve">
     <value>Настройки</value>
-  </data>
-  <data name="MainWindow_UpdateAvailable" xml:space="preserve">
-    <value>Доступно обновление!</value>
-  </data>
-  <data name="MainWindow_UpdateAvailableWithVersion" xml:space="preserve">
-    <value>Доступно обновление {0}!</value>
-  </data>
-  <data name="MoveDown" xml:space="preserve">
+  </data>  <data name="MoveDown" xml:space="preserve">
     <value>Переместить вниз</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
@@ -1397,14 +1358,7 @@
   </data>
   <data name="Update" xml:space="preserve">
     <value>Обновить</value>
-  </data>
-  <data name="UpdateWindow_Title" xml:space="preserve">
-    <value>Доступно обновление</value>
-  </data>
-  <data name="UpdateWindow_WhatsNew" xml:space="preserve">
-    <value>﻿Что нового?</value>
-  </data>
-  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
+  </data>  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
     <value>Настройть яркость подсветки клавиатуры.</value>
   </data>
   <data name="WhiteKeyboardBacklightAutomationStepControl_Title" xml:space="preserve">
@@ -1586,11 +1540,7 @@
   </data>
   <data name="SettingsPage_SynchronizeBrightnessToAllPowerPlans_Message" xml:space="preserve">
     <value>При включении этого параметра один и тот же уровень яркости будет применяться ко всем схемам питания Windows при каждом его изменении.</value>
-  </data>
-  <data name="Notification_UpdateAvailable" xml:space="preserve">
-    <value>Доступно обновление {0}!</value>
-  </data>
-  <data name="GodModeSettingsWindow_CPU_PeakPL" xml:space="preserve">
+  </data>  <data name="GodModeSettingsWindow_CPU_PeakPL" xml:space="preserve">
     <value>Предельная пиковая мощность</value>
   </data>
   <data name="GodModeSettingsWindow_CPU_APUsPPT_PL" xml:space="preserve">
@@ -1667,11 +1617,7 @@
   </data>
   <data name="StatusTrayPopup_DischargeRate" xml:space="preserve">
     <value>Мгновенная мощность при разрядке</value>
-  </data>
-  <data name="StatusTrayPopup_UpdateAvailable" xml:space="preserve">
-    <value>Доступно обновление!</value>
-  </data>
-  <data name="SymbolRegularPicker_Title" xml:space="preserve">
+  </data>  <data name="SymbolRegularPicker_Title" xml:space="preserve">
     <value>Выбрать значок</value>
   </data>
   <data name="AutomationPage_ChangeIcon" xml:space="preserve">
@@ -1866,11 +1812,7 @@
   </data>
   <data name="NotificationsSettingsWindow_NotificationDuration_Title" xml:space="preserve">
     <value>Длительность</value>
-  </data>
-  <data name="NotificationsSettingsWindow_Updates_Title" xml:space="preserve">
-    <value>Обновления</value>
-  </data>
-  <data name="GodModeSettingsWindow_GPU_ToCpuDynamicBoostControl" xml:space="preserve">
+  </data>  <data name="GodModeSettingsWindow_GPU_ToCpuDynamicBoostControl" xml:space="preserve">
     <value>Dynamic Boost GPU на CPU</value>
   </data>
   <data name="GodModeSettingsWindow_GPU_ToCpuDynamicBoostControl_Description" xml:space="preserve">
@@ -2002,11 +1944,7 @@
   </data>
   <data name="SpectrumKeyboardBacklightControl_Preset" xml:space="preserve">
     <value>Пресет</value>
-  </data>
-  <data name="DeviceInformationWindow_Refresh" xml:space="preserve">
-    <value>Обновить</value>
-  </data>
-  <data name="AbstractAutomationStepControl_Delete" xml:space="preserve">
+  </data>  <data name="AbstractAutomationStepControl_Delete" xml:space="preserve">
     <value>Удалить</value>
   </data>
   <data name="PeriodicActionPipelineTriggerTabItemContent_PeriodMinutes" xml:space="preserve">
@@ -2192,35 +2130,7 @@
   </data>
   <data name="NotificationsSettingsWindow_NotificationOnAllScreens_Title" xml:space="preserve">
     <value>Уведомления на всех мониторах</value>
-  </data>
-  <data name="SettingsPage_CheckUpdatesButton_Content" xml:space="preserve">
-    <value>Проверить</value>
-  </data>
-  <data name="SettingsPage_CheckUpdates_Started_Title" xml:space="preserve">
-    <value>Проверка наличия обновлений...</value>
-  </data>
-  <data name="SettingsPage_CheckUpdates_Title" xml:space="preserve">
-    <value>Проверить наличие обновлений</value>
-  </data>
-  <data name="SettingsPage_Update_Title" xml:space="preserve">
-    <value>Обновить</value>
-  </data>
-  <data name="MainWindow_CheckForUpdates_Error_ReachedRateLimit_Message" xml:space="preserve">
-    <value>Достигнут лимит запросов API, попробуйте позже.</value>
-  </data>
-  <data name="MainWindow_CheckForUpdates_Error_Title" xml:space="preserve">
-    <value>Не удалось проверить обновления</value>
-  </data>
-  <data name="MainWindow_CheckForUpdates_Error_Unknown_Message" xml:space="preserve">
-    <value>Что-то пошло не так, повторите попытку позже.</value>
-  </data>
-  <data name="MainWindow_CheckForUpdates_Success_Title" xml:space="preserve">
-    <value>Обновления не найдены</value>
-  </data>
-  <data name="SettingsPage_UpdateCheckFrequency_Title" xml:space="preserve">
-    <value>Автоматически проверять наличие обновлений</value>
-  </data>
-  <data name="PackagesPage_UpdateCatalogNotFound_Title" xml:space="preserve">
+  </data>  <data name="PackagesPage_UpdateCatalogNotFound_Title" xml:space="preserve">
     <value>Каталога обновлений не найдено</value>
   </data>
   <data name="PackagesPage_UpdateCatalogNotFound_Message" xml:space="preserve">

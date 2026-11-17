@@ -455,11 +455,7 @@ BRĪDINĀJUMS. Ja iekšējais displejs ir izslēgts vai hibrīda režīms nav ak
   </data>
   <data name="DeviceInformationWindow_Device_Title" xml:space="preserve">
     <value>Ierīce</value>
-  </data>
-  <data name="DeviceInformationWindow_LenovoSupport" xml:space="preserve">
-    <value>Lenovo Atbalsts</value>
-  </data>
-  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
+  </data>  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
     <value>Iekārtas Tips</value>
   </data>
   <data name="DeviceInformationWindow_Manufacturer_Title" xml:space="preserve">
@@ -473,17 +469,7 @@ BRĪDINĀJUMS. Ja iekšējais displejs ir izslēgts vai hibrīda režīms nav ak
   </data>
   <data name="DeviceInformationWindow_Title" xml:space="preserve">
     <value>Par Jūsu ierīci</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyEndDate_Title" xml:space="preserve">
-    <value>Beigu datums</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyStartDate_Title" xml:space="preserve">
-    <value>Sākuma datums</value>
-  </data>
-  <data name="DeviceInformationWindow_Warranty_Title" xml:space="preserve">
-    <value>Garantija</value>
-  </data>
-  <data name="Active" xml:space="preserve">
+  </data>  <data name="Active" xml:space="preserve">
     <value>Aktīvizēt</value>
   </data>
   <data name="DiscreteGPUControl_Deactivate" xml:space="preserve">
@@ -527,21 +513,7 @@ BRĪDINĀJUMS. Ja iebūvētais ekrāns ir izslēgts, šī darbība nedarbosies p
   </data>
   <data name="DisplayBrightnessAutomationStepControl_Title" xml:space="preserve">
     <value>Ekrāna spilgtums</value>
-  </data>
-  <data name="DonatePage_DonateWith" xml:space="preserve">
-    <value>Ziedot ar</value>
-  </data>
-  <data name="DonatePage_Message" xml:space="preserve">
-    <value>Lenovo Legion Toolkit izstrāde un uzturēšana prasa daudz laika. Ja jums patīk izmantot šo programmatūru, varat atbalstīt tās nākotni, ziedojot noteiktu summu.
-
-Noklikšķiniet uz zemāk redzamā PayPal logotipa vai skenējiet QR kodu, lai ziedotu ar PayPal.
-
-Paldies jau iepriekš!</value>
-  </data>
-  <data name="DonatePage_Title" xml:space="preserve">
-    <value>Ziedot</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
+  </data>  <data name="Edit" xml:space="preserve">
     <value>Rediģēt</value>
   </data>
   <data name="ExcludeRefreshRatesWindow_Description" xml:space="preserve">
@@ -756,11 +728,7 @@ BRĪDINĀJUMS. Ja iebūvētais ekrāns ir izslēgts, šī darbība nedarbosies p
   </data>
   <data name="MainWindow_NavigationItem_Dashboard" xml:space="preserve">
     <value>Informācijas panelis</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Donate" xml:space="preserve">
-    <value>Ziedot</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
+  </data>  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
     <value>Tastatūra</value>
   </data>
   <data name="MainWindow_NavigationItem_Packages" xml:space="preserve">
@@ -768,14 +736,7 @@ BRĪDINĀJUMS. Ja iebūvētais ekrāns ir izslēgts, šī darbība nedarbosies p
   </data>
   <data name="MainWindow_NavigationItem_Settings" xml:space="preserve">
     <value>Iestatījumi</value>
-  </data>
-  <data name="MainWindow_UpdateAvailable" xml:space="preserve">
-    <value>Pieejams atjauninājums!</value>
-  </data>
-  <data name="MainWindow_UpdateAvailableWithVersion" xml:space="preserve">
-    <value>Pieejams atjauninājums {0}!</value>
-  </data>
-  <data name="MoveDown" xml:space="preserve">
+  </data>  <data name="MoveDown" xml:space="preserve">
     <value>Pārvietoties uz leju</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
@@ -1380,14 +1341,7 @@ Ja izvēlaties turpināt, reģistrēšana tiks iespējota automātiski.</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Atjaunināt</value>
-  </data>
-  <data name="UpdateWindow_Title" xml:space="preserve">
-    <value>Pieejams atjauninājums</value>
-  </data>
-  <data name="UpdateWindow_WhatsNew" xml:space="preserve">
-    <value>Kas jauns?</value>
-  </data>
-  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
+  </data>  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
     <value>Pielāgojiet tastatūras izgaismojuma spožumu.</value>
   </data>
   <data name="WhiteKeyboardBacklightAutomationStepControl_Title" xml:space="preserve">
@@ -1563,11 +1517,7 @@ Peles pārvietošana vai tastatūras nospiešana pamodinās ekrānus.</value>
   </data>
   <data name="SettingsPage_SynchronizeBrightnessToAllPowerPlans_Message" xml:space="preserve">
     <value>Kad iespējots, visiem Windows Barošanas Plāniem tiks lietots vienāds spilgtuma līmenis ikreiz, kad to mainīsit.</value>
-  </data>
-  <data name="Notification_UpdateAvailable" xml:space="preserve">
-    <value>Pieejams atjauninājums {0}!</value>
-  </data>
-  <data name="GodModeSettingsWindow_CPU_PeakPL" xml:space="preserve">
+  </data>  <data name="GodModeSettingsWindow_CPU_PeakPL" xml:space="preserve">
     <value>Maksimālā Jaudas Robeža</value>
   </data>
   <data name="GodModeSettingsWindow_CPU_APUsPPT_PL" xml:space="preserve">
@@ -1644,11 +1594,7 @@ Peles pārvietošana vai tastatūras nospiešana pamodinās ekrānus.</value>
   </data>
   <data name="StatusTrayPopup_DischargeRate" xml:space="preserve">
     <value>Izlādes ātrums</value>
-  </data>
-  <data name="StatusTrayPopup_UpdateAvailable" xml:space="preserve">
-    <value>Pieejams atjauninājums!</value>
-  </data>
-  <data name="SymbolRegularPicker_Title" xml:space="preserve">
+  </data>  <data name="SymbolRegularPicker_Title" xml:space="preserve">
     <value>Atlasīt ikonu</value>
   </data>
   <data name="AutomationPage_ChangeIcon" xml:space="preserve">
@@ -1833,11 +1779,7 @@ Nepieciešama restartēšana.</value>
   </data>
   <data name="NotificationsSettingsWindow_NotificationDuration_Title" xml:space="preserve">
     <value>Ilgums</value>
-  </data>
-  <data name="NotificationsSettingsWindow_Updates_Title" xml:space="preserve">
-    <value>Atjauninājumi</value>
-  </data>
-  <data name="SettingsPage_BootLogo_Title" xml:space="preserve">
+  </data>  <data name="SettingsPage_BootLogo_Title" xml:space="preserve">
     <value>Sāknēšanās Logo</value>
   </data>
   <data name="SettingsPage_BootLogo_Message" xml:space="preserve">

@@ -12,6 +12,8 @@
 		<PublishSingleFile>false</PublishSingleFile>
 		<PublishReadyToRun>false</PublishReadyToRun>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<!-- 体积优化：仅保留简繁中文卫星程序集 -->
+		<SatelliteResourceLanguages>zh-Hans;zh-Hant</SatelliteResourceLanguages>
 	</PropertyGroup>
 
 	<ItemGroup>

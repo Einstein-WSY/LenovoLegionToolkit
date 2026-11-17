@@ -451,11 +451,7 @@ DIQQAT: Eger ishki displey óshirilgen yamasa gibrid rejim aktiv emes bolsa, bul
   </data>
   <data name="DeviceInformationWindow_Device_Title" xml:space="preserve">
     <value>Qurılma</value>
-  </data>
-  <data name="DeviceInformationWindow_LenovoSupport" xml:space="preserve">
-    <value>Lenovo qollap-quwatlaw xizmeti</value>
-  </data>
-  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
+  </data>  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
     <value>Qurılma modeliniń túri</value>
   </data>
   <data name="DeviceInformationWindow_Manufacturer_Title" xml:space="preserve">
@@ -469,17 +465,7 @@ DIQQAT: Eger ishki displey óshirilgen yamasa gibrid rejim aktiv emes bolsa, bul
   </data>
   <data name="DeviceInformationWindow_Title" xml:space="preserve">
     <value>Qurılmańız haqqında</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyEndDate_Title" xml:space="preserve">
-    <value>Kepillik tawsılıw sánesi</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyStartDate_Title" xml:space="preserve">
-    <value>Kepillik baslanıw sánesi</value>
-  </data>
-  <data name="DeviceInformationWindow_Warranty_Title" xml:space="preserve">
-    <value>Kepillik</value>
-  </data>
-  <data name="Active" xml:space="preserve">
+  </data>  <data name="Active" xml:space="preserve">
     <value>Aktiv</value>
   </data>
   <data name="DiscreteGPUControl_Deactivate" xml:space="preserve">
@@ -523,21 +509,7 @@ ESLETPE: Eger ishki displey óshirilgen bolsa, bul háreket durıs islemeydi.</v
   </data>
   <data name="DisplayBrightnessAutomationStepControl_Title" xml:space="preserve">
     <value>Displey jarıqlıǵı</value>
-  </data>
-  <data name="DonatePage_DonateWith" xml:space="preserve">
-    <value>Járdeminde qollap-quwatlaw</value>
-  </data>
-  <data name="DonatePage_Message" xml:space="preserve">
-    <value>Lenovo Legion Toolkitti rawajlandırıw hám turaqlı islewin támiyinlew ushın kóp waqıt ketedi. Eger sizge bul baǵdarlamanı qollanıw unasa, siz qálegen summańız benen onıń keleshegin qollap-quwatlawıńız múmkin.
-
-PayPal arqalı qollap-quwatlaw ushın PayPal logotibine basıń yamasa tómendegi QR-kodtı tekseriń.
-
-Aldınnan raxmet!</value>
-  </data>
-  <data name="DonatePage_Title" xml:space="preserve">
-    <value>Qollap-quwatlaw</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
+  </data>  <data name="Edit" xml:space="preserve">
     <value>Ózgertiw</value>
   </data>
   <data name="ExcludeRefreshRatesWindow_Description" xml:space="preserve">
@@ -752,11 +724,7 @@ DIQQAT: Eger ishki displey óshirilgen bolsa, bul háreket durıs orınlanbaydı
   </data>
   <data name="MainWindow_NavigationItem_Dashboard" xml:space="preserve">
     <value>Basqarıw paneli</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Donate" xml:space="preserve">
-    <value>Qollap-quwatlaw</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
+  </data>  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
     <value>Klaviatura</value>
   </data>
   <data name="MainWindow_NavigationItem_Packages" xml:space="preserve">
@@ -764,14 +732,7 @@ DIQQAT: Eger ishki displey óshirilgen bolsa, bul háreket durıs orınlanbaydı
   </data>
   <data name="MainWindow_NavigationItem_Settings" xml:space="preserve">
     <value>Sazlawlar</value>
-  </data>
-  <data name="MainWindow_UpdateAvailable" xml:space="preserve">
-    <value>Jańalanıw bar!</value>
-  </data>
-  <data name="MainWindow_UpdateAvailableWithVersion" xml:space="preserve">
-    <value>{0} Jańalanıw bar!</value>
-  </data>
-  <data name="MoveDown" xml:space="preserve">
+  </data>  <data name="MoveDown" xml:space="preserve">
     <value>Tómenge kóshiriw</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
@@ -1372,14 +1333,7 @@ Eger siz dawam etiwdi tańlasańız, jurnaldı júrgiziw avtomatikalıq qosılad
   </data>
   <data name="Update" xml:space="preserve">
     <value>Jańalaw</value>
-  </data>
-  <data name="UpdateWindow_Title" xml:space="preserve">
-    <value>Jańalanıw bar</value>
-  </data>
-  <data name="UpdateWindow_WhatsNew" xml:space="preserve">
-    <value>Ne jańalıq?</value>
-  </data>
-  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
+  </data>  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
     <value>Klaviaturnıń arqa jaqtılıǵınıń jarıqlıǵın sazlaw.</value>
   </data>
   <data name="WhiteKeyboardBacklightAutomationStepControl_Title" xml:space="preserve">
@@ -1555,11 +1509,7 @@ Bul sazlaw tek arnawlı rejim qosılǵanda nátiyje beredi.</value>
   </data>
   <data name="SettingsPage_SynchronizeBrightnessToAllPowerPlans_Message" xml:space="preserve">
     <value>Qosılǵanda hám hár ózgertilgende, barlıq Windows quwatlılıq rejelerine birdey jarıqlıq dárejesi qollanıladı.</value>
-  </data>
-  <data name="Notification_UpdateAvailable" xml:space="preserve">
-    <value>{0} Jańalanıw bar!</value>
-  </data>
-  <data name="GodModeSettingsWindow_CPU_PeakPL" xml:space="preserve">
+  </data>  <data name="GodModeSettingsWindow_CPU_PeakPL" xml:space="preserve">
     <value>Quwatlılıqtıń eń joqarǵı shegi</value>
   </data>
   <data name="GodModeSettingsWindow_CPU_APUsPPT_PL" xml:space="preserve">
@@ -1636,11 +1586,7 @@ Bul sazlaw tek arnawlı rejim qosılǵanda nátiyje beredi.</value>
   </data>
   <data name="StatusTrayPopup_DischargeRate" xml:space="preserve">
     <value>Zaryadsızlanıw tezligi</value>
-  </data>
-  <data name="StatusTrayPopup_UpdateAvailable" xml:space="preserve">
-    <value>Jańalanıw bar!</value>
-  </data>
-  <data name="SymbolRegularPicker_Title" xml:space="preserve">
+  </data>  <data name="SymbolRegularPicker_Title" xml:space="preserve">
     <value>Tańbanı tańlaw</value>
   </data>
   <data name="AutomationPage_ChangeIcon" xml:space="preserve">
@@ -1829,11 +1775,7 @@ ESKERTIW: Diskret GPU ámeldegi bolmasa, bul ámel tuwrı atqarılmaydı.</value
   </data>
   <data name="NotificationsSettingsWindow_NotificationDuration_Title" xml:space="preserve">
     <value>Dawam etiw waqtı</value>
-  </data>
-  <data name="NotificationsSettingsWindow_Updates_Title" xml:space="preserve">
-    <value>Jańalanıwlar</value>
-  </data>
-  <data name="GodModeSettingsWindow_GPU_ToCpuDynamicBoostControl" xml:space="preserve">
+  </data>  <data name="GodModeSettingsWindow_GPU_ToCpuDynamicBoostControl" xml:space="preserve">
     <value>GPU to CPU Dynamic Boost</value>
   </data>
   <data name="SettingsPage_BootLogo_Title" xml:space="preserve">

@@ -42,8 +42,6 @@ public class Flags
     public string? ProxyPassword { get; }
     /// <summary>代理是否接受所有证书（忽略证书校验）。</summary>
     public bool ProxyAllowAllCerts { get; }
-    /// <summary>是否禁用更新检查器。</summary>
-    public bool DisableUpdateChecker { get; }
     /// <summary>是否禁用冲突软件警告。</summary>
     public bool DisableConflictingSoftwareWarning { get; }
 
@@ -70,7 +68,6 @@ public class Flags
         ProxyUsername = StringValue(args, "--proxy-username");
         ProxyPassword = StringValue(args, "--proxy-password");
         ProxyAllowAllCerts = BoolValue(args, "--proxy-allow-all-certs");
-        DisableUpdateChecker = BoolValue(args, "--disable-update-checker");
         DisableConflictingSoftwareWarning = BoolValue(args, "--disable-conflicting-software-warning");
     }
 
@@ -127,6 +124,5 @@ public class Flags
         $" {nameof(ProxyUsername)}: {ProxyUsername}," +
         $" {nameof(ProxyPassword)}: {ProxyPassword}," +
         $" {nameof(ProxyAllowAllCerts)}: {ProxyAllowAllCerts}," +
-        $" {nameof(DisableUpdateChecker)}: {DisableUpdateChecker}, " +
         $" {nameof(DisableConflictingSoftwareWarning)}: {DisableConflictingSoftwareWarning}";
 }

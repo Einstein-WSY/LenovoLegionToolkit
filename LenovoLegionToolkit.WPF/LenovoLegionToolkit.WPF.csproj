@@ -26,7 +26,8 @@
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<NeutralLanguage>en</NeutralLanguage>
-		<SatelliteResourceLanguages>ar;bg;cs;de;en;el;es;fr;hu;it;ja;lv;nl;nl-nl;pl;pt;pt-br;ro;ru;sk;uk;tr;vi;zh;zh-hans;zh-hant</SatelliteResourceLanguages>
+		<!-- 只保留简繁中文卫星程序集，其余语言资源不编译进输出以减小体积 -->
+		<SatelliteResourceLanguages>zh-Hans;zh-Hant</SatelliteResourceLanguages>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 	  <DebugType>portable</DebugType>
@@ -37,8 +38,6 @@
 	<ItemGroup>
 		<PackageReference Include="Autofac" Version="8.2.0" />
 		<PackageReference Include="Humanizer" Version="2.14.1" />
-		<PackageReference Include="Markdig" Version="0.40.0" />
-		<PackageReference Include="Markdig.Wpf" Version="0.5.0.1" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="PixiEditor.ColorPicker" Version="3.4.2" />
 		<PackageReference Include="WPF-UI" Version="2.1.0" />
@@ -52,14 +51,10 @@
 	<ItemGroup>
 		<None Remove="Assets\icon.ico" />
 		<None Remove="Assets\default_exe.png" />
-		<None Remove="Assets\Donate\paypal_logo.png" />
-		<None Remove="Assets\Donate\paypal_qr.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<Resource Include="Assets\default_exe.png" />
 		<Resource Include="Assets\icon.ico" />
-		<Resource Include="Assets\Donate\paypal_logo.png" />
-		<Resource Include="Assets\Donate\paypal_qr.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Update="Assets\AssetResources.Designer.cs">
@@ -82,5 +77,11 @@
 	    <Generator>PublicResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Resource.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <!-- 体积优化：仅编译简繁中文卫星资源，其余语言 resx 不参与构建 -->
+	  <EmbeddedResource Remove="Resources\Resource.*.resx" />
+	  <EmbeddedResource Include="Resources\Resource.zh-hans.resx" />
+	  <EmbeddedResource Include="Resources\Resource.zh-hant.resx" />
 	</ItemGroup>
 </Project>

@@ -8,6 +8,8 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<NeutralLanguage>en</NeutralLanguage>
 		<UseWindowsForms>true</UseWindowsForms>
+		<!-- 只生成简繁中文卫星程序集，其余语言不编译进输出以减小体积 -->
+		<SatelliteResourceLanguages>zh-Hans;zh-Hant</SatelliteResourceLanguages>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Autofac" Version="8.2.0" />
@@ -27,7 +29,6 @@
 		<PackageReference Include="NeoSmart.AsyncLock" Version="3.2.1" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="NvAPIWrapper.Net" Version="0.8.1.101" />
-		<PackageReference Include="Octokit" Version="14.0.0" />
 		<PackageReference Include="TaskScheduler" Version="2.12.1" />
 		<PackageReference Include="WindowsDisplayAPI" Version="1.3.0.13" />
 	</ItemGroup>
@@ -43,5 +44,11 @@
 	    <Generator>PublicResXFileCodeGenerator</Generator>
 	    <LastGenOutput>Resource.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
+	</ItemGroup>
+	<ItemGroup>
+	  <!-- 体积优化：仅编译简繁中文卫星资源，其余语言 resx 不参与构建 -->
+	  <EmbeddedResource Remove="Resources\Resource.*.resx" />
+	  <EmbeddedResource Include="Resources\Resource.zh-hans.resx" />
+	  <EmbeddedResource Include="Resources\Resource.zh-hant.resx" />
 	</ItemGroup>
 </Project>

@@ -451,11 +451,7 @@
   </data>
   <data name="DeviceInformationWindow_Device_Title" xml:space="preserve">
     <value>الجهاز</value>
-  </data>
-  <data name="DeviceInformationWindow_LenovoSupport" xml:space="preserve">
-    <value>خدمة Lenovo</value>
-  </data>
-  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
+  </data>  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
     <value>نوع الجهاز</value>
   </data>
   <data name="DeviceInformationWindow_Manufacturer_Title" xml:space="preserve">
@@ -469,17 +465,7 @@
   </data>
   <data name="DeviceInformationWindow_Title" xml:space="preserve">
     <value>حول الجهاز</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyEndDate_Title" xml:space="preserve">
-    <value>تاريخ الانتهاء</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyStartDate_Title" xml:space="preserve">
-    <value>تاريخ البدء</value>
-  </data>
-  <data name="DeviceInformationWindow_Warranty_Title" xml:space="preserve">
-    <value>الضمان</value>
-  </data>
-  <data name="Active" xml:space="preserve">
+  </data>  <data name="Active" xml:space="preserve">
     <value>مفعل</value>
   </data>
   <data name="DiscreteGPUControl_Deactivate" xml:space="preserve">
@@ -521,21 +507,7 @@
   </data>
   <data name="DisplayBrightnessAutomationStepControl_Title" xml:space="preserve">
     <value>سطوع الشاشة</value>
-  </data>
-  <data name="DonatePage_DonateWith" xml:space="preserve">
-    <value>تبرع لِ</value>
-  </data>
-  <data name="DonatePage_Message" xml:space="preserve">
-    <value>العمل على Lenovo Legion Toolkit يحتاج الكثير من الوقت و المجهود. لو اعجبك البرنامج يمكن انت تدعمه من خلال التبرع بمبلغ من اختيارك.
-
-اضغط على رمز الباي بال فى الأسفل او امسح كود ال QR للتبرع بالباي بال. 
-
-وشكرا على دعمكم!</value>
-  </data>
-  <data name="DonatePage_Title" xml:space="preserve">
-    <value>دعم المشروع</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
+  </data>  <data name="Edit" xml:space="preserve">
     <value>تحرير</value>
   </data>
   <data name="ExcludeRefreshRatesWindow_Description" xml:space="preserve">
@@ -724,11 +696,7 @@
   </data>
   <data name="MainWindow_NavigationItem_Dashboard" xml:space="preserve">
     <value>لوحة التحكم أو اللوحة الرئيسة</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Donate" xml:space="preserve">
-    <value>دعم المشروع</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
+  </data>  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
     <value>لوحة المفاتيح</value>
   </data>
   <data name="MainWindow_NavigationItem_Packages" xml:space="preserve">
@@ -736,14 +704,7 @@
   </data>
   <data name="MainWindow_NavigationItem_Settings" xml:space="preserve">
     <value>الإعدادات</value>
-  </data>
-  <data name="MainWindow_UpdateAvailable" xml:space="preserve">
-    <value>يتوفر تحديث!</value>
-  </data>
-  <data name="MainWindow_UpdateAvailableWithVersion" xml:space="preserve">
-    <value>يتوفر {0} تحديث!</value>
-  </data>
-  <data name="MoveDown" xml:space="preserve">
+  </data>  <data name="MoveDown" xml:space="preserve">
     <value>التحريك للأسفل</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
@@ -1296,14 +1257,7 @@
   </data>
   <data name="Update" xml:space="preserve">
     <value>تحديث</value>
-  </data>
-  <data name="UpdateWindow_Title" xml:space="preserve">
-    <value>التحديث متوفر</value>
-  </data>
-  <data name="UpdateWindow_WhatsNew" xml:space="preserve">
-    <value>ما الجديد؟</value>
-  </data>
-  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
+  </data>  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
     <value>اضبط الإعداد المسبق للإضاءة الخلفية للوحة المفاتيح.</value>
   </data>
   <data name="WhiteKeyboardBacklightAutomationStepControl_Title" xml:space="preserve">
@@ -1341,17 +1295,9 @@
   </data>
   <data name="SaveAndClose" xml:space="preserve">
     <value>حفظ و إغلاق</value>
-  </data>
-  <data name="Notification_UpdateAvailable" xml:space="preserve">
-    <value>يتوفر {0} تحديث!</value>
-  </data>
-  <data name="AddAutomationStepWindow_Title" xml:space="preserve">
+  </data>  <data name="AddAutomationStepWindow_Title" xml:space="preserve">
     <value>إضافة خطوة</value>
-  </data>
-  <data name="StatusTrayPopup_UpdateAvailable" xml:space="preserve">
-    <value>يتوفر تحديث!</value>
-  </data>
-  <data name="PoweredOff" xml:space="preserve">
+  </data>  <data name="PoweredOff" xml:space="preserve">
     <value>مغلق</value>
   </data>
 </root>

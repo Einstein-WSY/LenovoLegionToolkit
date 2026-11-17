@@ -455,11 +455,7 @@ UYARI: Dahili ekran kapalıysa veya Hibrit modu etkin değilse bu eylem düzgün
   </data>
   <data name="DeviceInformationWindow_Device_Title" xml:space="preserve">
     <value>Cihaz</value>
-  </data>
-  <data name="DeviceInformationWindow_LenovoSupport" xml:space="preserve">
-    <value>Lenovo Destek</value>
-  </data>
-  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
+  </data>  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
     <value>Cihaz Tipi</value>
   </data>
   <data name="DeviceInformationWindow_Manufacturer_Title" xml:space="preserve">
@@ -473,17 +469,7 @@ UYARI: Dahili ekran kapalıysa veya Hibrit modu etkin değilse bu eylem düzgün
   </data>
   <data name="DeviceInformationWindow_Title" xml:space="preserve">
     <value>Cihaz hakkında</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyEndDate_Title" xml:space="preserve">
-    <value>Bitiş tarihi</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyStartDate_Title" xml:space="preserve">
-    <value>Başlangıç tarihi</value>
-  </data>
-  <data name="DeviceInformationWindow_Warranty_Title" xml:space="preserve">
-    <value>Garanti</value>
-  </data>
-  <data name="Active" xml:space="preserve">
+  </data>  <data name="Active" xml:space="preserve">
     <value>Aktif</value>
   </data>
   <data name="DiscreteGPUControl_Deactivate" xml:space="preserve">
@@ -527,21 +513,7 @@ UYARI: Dahili ekran kapalıysa bu eylem düzgün çalışmayacaktır.</value>
   </data>
   <data name="DisplayBrightnessAutomationStepControl_Title" xml:space="preserve">
     <value>Ekran parlaklığı</value>
-  </data>
-  <data name="DonatePage_DonateWith" xml:space="preserve">
-    <value>Bağış yapın</value>
-  </data>
-  <data name="DonatePage_Message" xml:space="preserve">
-    <value>Lenovo Legion Toolkit'in geliştirilmesi ve bakımı çok zaman alıyor. Bu yazılımı kullanmayı seviyorsanız, istediğiniz miktarda bağış yaparak geleceğine destek olabilirsiniz.
-
-PayPal ile bağış yapmak için aşağıdaki PayPal logosuna tıklayın veya QR kodunu tarayın.
-
-Şimdiden teşekkürler!</value>
-  </data>
-  <data name="DonatePage_Title" xml:space="preserve">
-    <value>Bağış</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
+  </data>  <data name="Edit" xml:space="preserve">
     <value>Düzenle</value>
   </data>
   <data name="ExcludeRefreshRatesWindow_Description" xml:space="preserve">
@@ -759,11 +731,7 @@ UYARI: Dahili ekran kapalıysa bu işlem doğru çalışmaz.</value>
   </data>
   <data name="MainWindow_NavigationItem_Dashboard" xml:space="preserve">
     <value>Menü</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Donate" xml:space="preserve">
-    <value>Bağış</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
+  </data>  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
     <value>Klavye</value>
   </data>
   <data name="MainWindow_NavigationItem_Packages" xml:space="preserve">
@@ -771,14 +739,7 @@ UYARI: Dahili ekran kapalıysa bu işlem doğru çalışmaz.</value>
   </data>
   <data name="MainWindow_NavigationItem_Settings" xml:space="preserve">
     <value>Ayarlar</value>
-  </data>
-  <data name="MainWindow_UpdateAvailable" xml:space="preserve">
-    <value>Güncelleme mevcut!</value>
-  </data>
-  <data name="MainWindow_UpdateAvailableWithVersion" xml:space="preserve">
-    <value>{0} Güncelleme mevcut!</value>
-  </data>
-  <data name="MoveDown" xml:space="preserve">
+  </data>  <data name="MoveDown" xml:space="preserve">
     <value>Aşağı Taşı</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
@@ -1397,14 +1358,7 @@ Devam etmeyi seçerseniz, kayıt etme otomatik olarak etkinleştirilecektir.</va
   </data>
   <data name="Update" xml:space="preserve">
     <value>Güncelle</value>
-  </data>
-  <data name="UpdateWindow_Title" xml:space="preserve">
-    <value>Güncelleme mevcut</value>
-  </data>
-  <data name="UpdateWindow_WhatsNew" xml:space="preserve">
-    <value>Yenilikler nedir?</value>
-  </data>
-  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
+  </data>  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
     <value>Klavye parlaklığını ayarlayın.</value>
   </data>
   <data name="WhiteKeyboardBacklightAutomationStepControl_Title" xml:space="preserve">
@@ -1586,11 +1540,7 @@ Bu ayarlar yalnızca Özel Mod etkinleştirildiğinde etkili olur.</value>
   </data>
   <data name="SettingsPage_SynchronizeBrightnessToAllPowerPlans_Message" xml:space="preserve">
     <value>Açık olduğunda, değiştirdiğinizde tüm Windows güç planlarına aynı parlaklık düzeyi uygulanacaktır.</value>
-  </data>
-  <data name="Notification_UpdateAvailable" xml:space="preserve">
-    <value>{0} sürümü güncelleme için mevcut!</value>
-  </data>
-  <data name="GodModeSettingsWindow_CPU_PeakPL" xml:space="preserve">
+  </data>  <data name="GodModeSettingsWindow_CPU_PeakPL" xml:space="preserve">
     <value>Tepe Güç Sınırı</value>
   </data>
   <data name="GodModeSettingsWindow_CPU_APUsPPT_PL" xml:space="preserve">
@@ -1667,11 +1617,7 @@ Bu ayarlar yalnızca Özel Mod etkinleştirildiğinde etkili olur.</value>
   </data>
   <data name="StatusTrayPopup_DischargeRate" xml:space="preserve">
     <value>Deşarj oranı</value>
-  </data>
-  <data name="StatusTrayPopup_UpdateAvailable" xml:space="preserve">
-    <value>Güncelleme mevcut!</value>
-  </data>
-  <data name="SymbolRegularPicker_Title" xml:space="preserve">
+  </data>  <data name="SymbolRegularPicker_Title" xml:space="preserve">
     <value>Simge seç</value>
   </data>
   <data name="AutomationPage_ChangeIcon" xml:space="preserve">
@@ -1866,11 +1812,7 @@ Yeniden başlatma gerektirir.</value>
   </data>
   <data name="NotificationsSettingsWindow_NotificationDuration_Title" xml:space="preserve">
     <value>Süre</value>
-  </data>
-  <data name="NotificationsSettingsWindow_Updates_Title" xml:space="preserve">
-    <value>Güncellemeler</value>
-  </data>
-  <data name="GodModeSettingsWindow_GPU_ToCpuDynamicBoostControl" xml:space="preserve">
+  </data>  <data name="GodModeSettingsWindow_GPU_ToCpuDynamicBoostControl" xml:space="preserve">
     <value>GPU Üstünden CPU Üstüne Dinamik Güç</value>
   </data>
   <data name="GodModeSettingsWindow_GPU_ToCpuDynamicBoostControl_Description" xml:space="preserve">
@@ -2002,11 +1944,7 @@ Desteklenen biçimler: {1}.</value>
   </data>
   <data name="SpectrumKeyboardBacklightControl_Preset" xml:space="preserve">
     <value>Ön ayar</value>
-  </data>
-  <data name="DeviceInformationWindow_Refresh" xml:space="preserve">
-    <value>Yenile</value>
-  </data>
-  <data name="AbstractAutomationStepControl_Delete" xml:space="preserve">
+  </data>  <data name="AbstractAutomationStepControl_Delete" xml:space="preserve">
     <value>Sil</value>
   </data>
   <data name="PeriodicActionPipelineTriggerTabItemContent_PeriodMinutes" xml:space="preserve">
@@ -2192,35 +2130,7 @@ Desteklenen biçimler: {1}.</value>
   </data>
   <data name="NotificationsSettingsWindow_NotificationOnAllScreens_Title" xml:space="preserve">
     <value>Tüm ekranlarda bildirim</value>
-  </data>
-  <data name="SettingsPage_CheckUpdatesButton_Content" xml:space="preserve">
-    <value>Denetle</value>
-  </data>
-  <data name="SettingsPage_CheckUpdates_Started_Title" xml:space="preserve">
-    <value>Güncelleme denetleniyor...</value>
-  </data>
-  <data name="SettingsPage_CheckUpdates_Title" xml:space="preserve">
-    <value>Güncellemeleri denetle</value>
-  </data>
-  <data name="SettingsPage_Update_Title" xml:space="preserve">
-    <value>Güncelle</value>
-  </data>
-  <data name="MainWindow_CheckForUpdates_Error_ReachedRateLimit_Message" xml:space="preserve">
-    <value>API oranı sınırına ulaşıldı, lütfen daha sonra tekrar deneyin.</value>
-  </data>
-  <data name="MainWindow_CheckForUpdates_Error_Title" xml:space="preserve">
-    <value>Güncellemeler kontrol edilemedi</value>
-  </data>
-  <data name="MainWindow_CheckForUpdates_Error_Unknown_Message" xml:space="preserve">
-    <value>Bir şeyler ters gitti, lütfen sonra tekrar deneyin.</value>
-  </data>
-  <data name="MainWindow_CheckForUpdates_Success_Title" xml:space="preserve">
-    <value>Güncelleme bulunamadı</value>
-  </data>
-  <data name="SettingsPage_UpdateCheckFrequency_Title" xml:space="preserve">
-    <value>Güncellemeleri otomatik olarak denetle</value>
-  </data>
-  <data name="PackagesPage_UpdateCatalogNotFound_Title" xml:space="preserve">
+  </data>  <data name="PackagesPage_UpdateCatalogNotFound_Title" xml:space="preserve">
     <value>Güncelleme kataloğu bulunamadı</value>
   </data>
   <data name="PackagesPage_UpdateCatalogNotFound_Message" xml:space="preserve">

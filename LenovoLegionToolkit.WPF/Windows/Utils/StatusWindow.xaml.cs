@@ -29,8 +29,7 @@ public partial class StatusWindow
         string? godModePresetName,
         GPUStatus? gpuStatus,
         BatteryInformation? batteryInformation,
-        BatteryState? batteryState,
-        bool hasUpdate)
+        BatteryState? batteryState)
     {
         /// <summary>当前电源模式。</summary>
         public PowerModeState? PowerModeState { get; } = powerModeState;
@@ -42,8 +41,6 @@ public partial class StatusWindow
         public BatteryInformation? BatteryInformation { get; } = batteryInformation;
         /// <summary>电池保养状态。</summary>
         public BatteryState? BatteryState { get; } = batteryState;
-        /// <summary>是否存在可用更新。</summary>
-        public bool HasUpdate { get; } = hasUpdate;
     }
 
     /// <summary>
@@ -62,14 +59,12 @@ public partial class StatusWindow
         var godModeController = IoCContainer.Resolve<GodModeController>();
         var gpuController = IoCContainer.Resolve<GPUController>();
         var batteryFeature = IoCContainer.Resolve<BatteryFeature>();
-        //var updateChecker = IoCContainer.Resolve<UpdateChecker>(); // 【已注释】更新模块已停用
 
         PowerModeState? state = null;
         string? godModePresetName = null;
         GPUStatus? gpuStatus = null;
         BatteryInformation? batteryInformation = null;
         BatteryState? batteryState = null;
-        var hasUpdate = false;
 
         // 【性能优化】电源模式、独显状态、电池信息、电池模式四项数据互不依赖，
         // 原先串行 await 使浮窗显示延迟等于各次 WMI/NVAPI 往返之和；这里并行采集以缩短首屏延迟。
@@ -120,18 +115,9 @@ public partial class StatusWindow
             catch { /* Ignored */ }
         });
 
-        /*
-        try
-        {
-            hasUpdate = await updateChecker.CheckAsync(false) is not null;
-        }
-        catch { // Ignored
-        }
-        */ // 【已注释】更新模块已停用，状态浮窗不再检查新版本
-
         await Task.WhenAll(powerModeTask, gpuTask, batteryInfoTask, batteryStateTask);
 
-        return new(state, godModePresetName, gpuStatus, batteryInformation, batteryState, hasUpdate);
+        return new(state, godModePresetName, gpuStatus, batteryInformation, batteryState);
     }
 
     /// <summary>
@@ -169,7 +155,6 @@ public partial class StatusWindow
         RefreshPowerMode(data.PowerModeState, data.GodModePresetName);
         RefreshDiscreteGpu(data.GPUStatus);
         RefreshBattery(data.BatteryInformation, data.BatteryState);
-        RefreshUpdate(data.HasUpdate);
     }
 
     private void StatusWindow_Loaded(object sender, RoutedEventArgs e) => MoveBottomRightEdgeOfWindowToMousePosition();
@@ -319,6 +304,4 @@ public partial class StatusWindow
         _batteryMinDischargeValueLabel.Content = $"{batteryInformation.Value.MinDischargeRate / 1000.0:+0.00;-0.00;0.00} W";
         _batteryMaxDischargeValueLabel.Content = $"{batteryInformation.Value.MaxDischargeRate / 1000.0:+0.00;-0.00;0.00} W";
     }
-
-    private void RefreshUpdate(bool hasUpdate) => _updateIndicator.Visibility = hasUpdate ? Visibility.Visible : Visibility.Collapsed;
 }

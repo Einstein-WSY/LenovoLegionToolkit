@@ -25,4 +25,10 @@
 	    <LastGenOutput>Resource.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
 	</ItemGroup>
+	<ItemGroup>
+	  <!-- 体积优化：仅编译简繁中文卫星资源，其余语言 resx 不参与构建 -->
+	  <EmbeddedResource Remove="Resources\Resource.*.resx" />
+	  <EmbeddedResource Include="Resources\Resource.zh-hans.resx" />
+	  <EmbeddedResource Include="Resources\Resource.zh-hant.resx" />
+	</ItemGroup>
 </Project>

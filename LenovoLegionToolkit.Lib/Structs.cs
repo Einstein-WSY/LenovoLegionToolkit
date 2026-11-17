@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using LenovoLegionToolkit.Lib.Extensions;
 using Newtonsoft.Json;
-using Octokit;
 
 namespace LenovoLegionToolkit.Lib;
 
@@ -1018,44 +1017,6 @@ public readonly struct Time(int hour, int minute)
     public static bool operator !=(Time left, Time right) => !(left == right);
 
     #endregion
-}
-
-/// <summary>
-/// 应用更新信息，由 GitHub Release 元数据映射而来。
-/// </summary>
-public readonly struct Update(Release release)
-{
-    public Version Version { get; } = Version.Parse(release.TagName); // 版本号取自 tag 名
-    public string Title { get; } = release.Name; // 标题
-    public string Description { get; } = release.Body; // 更新说明（Markdown）
-    public DateTimeOffset Date { get; } = release.PublishedAt ?? release.CreatedAt; // 发布时间，缺失时退回创建时间
-    // 仅取以 setup.exe 结尾的发布附件作为下载地址（安装包）
-    public string? Url { get; } = release.Assets
-        .Where(ra => ra.Name.EndsWith("setup.exe", StringComparison.InvariantCultureIgnoreCase))
-        .Select(ra => ra.BrowserDownloadUrl)
-        .FirstOrDefault();
-
-    #region Equality
-
-    public override bool Equals(object? obj) => obj is Update other && Version.Equals(other.Version);
-
-    public override int GetHashCode() => Version.GetHashCode();
-
-    public static bool operator ==(Update left, Update right) => left.Equals(right);
-
-    public static bool operator !=(Update left, Update right) => !left.Equals(right);
-
-    #endregion
-}
-
-/// <summary>
-/// 保修信息：起始日期、结束日期与查询链接。
-/// </summary>
-public readonly struct WarrantyInfo(DateTime? start, DateTime? end, Uri? link)
-{
-    public DateTime? Start { get; } = start; // 保修开始日期
-    public DateTime? End { get; } = end; // 保修结束日期
-    public Uri? Link { get; } = link; // 官方保修查询页面链接
 }
 
 /// <summary>

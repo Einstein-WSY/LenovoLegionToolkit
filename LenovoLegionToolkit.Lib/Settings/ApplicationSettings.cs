@@ -15,11 +15,6 @@ public class ApplicationSettings : AbstractSettings<ApplicationSettings.Applicat
     public class Notifications
     {
         /// <summary>
-        /// 是否提示有可用更新，默认开启。
-        /// </summary>
-        public bool UpdateAvailable { get; set; } = true;
-
-        /// <summary>
         /// 是否提示 CapsLock/NumLock 状态，默认关闭。
         /// </summary>
         public bool CapsNumLock { get; set; }
@@ -164,11 +159,6 @@ public class ApplicationSettings : AbstractSettings<ApplicationSettings.Applicat
         /// Fn+R 循环切换刷新率时排除的刷新率列表。
         /// </summary>
         public List<RefreshRate> ExcludedRefreshRates { get; set; } = [];
-
-        /// <summary>
-        /// 缓存的保修信息。
-        /// </summary>
-        public WarrantyInfo? WarrantyInfo { get; set; }
 
         /// <summary>
         /// 智能按键单次按下所绑定动作的 ID。

@@ -48,7 +48,6 @@ public class IoCModule : Module
         builder.Register<RGBKeyboardSettings>();
         builder.Register<SpectrumKeyboardSettings>();
         builder.Register<SunriseSunsetSettings>();
-        builder.Register<UpdateCheckSettings>();
 
         // 硬件功能封装：每个 Feature 对应一项可开关/切换的设备能力
         builder.Register<AlwaysOnUSBFeature>();
@@ -135,10 +134,6 @@ public class IoCModule : Module
         builder.Register<SpectrumKeyboardBacklightController>();
         builder.Register<WindowsPowerModeController>();
         builder.Register<WindowsPowerPlanController>();
-
-        // 联网检查器：检查应用更新与保修信息
-        //builder.Register<UpdateChecker>(); // 【已注释】更新模块已停用
-        builder.Register<WarrantyChecker>();
 
         // 驱动/BIOS 包下载器（PCSupport 与 Vantage 两种来源）
         builder.Register<PackageDownloaderFactory>();

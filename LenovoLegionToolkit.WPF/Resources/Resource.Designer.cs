@@ -1507,14 +1507,6 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Lenovo Support.
-        /// </summary>
-        public static string DeviceInformationWindow_LenovoSupport {
-            get {
-                return ResourceManager.GetString("DeviceInformationWindow_LenovoSupport", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Machine Type.
@@ -1543,14 +1535,6 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Refresh.
-        /// </summary>
-        public static string DeviceInformationWindow_Refresh {
-            get {
-                return ResourceManager.GetString("DeviceInformationWindow_Refresh", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Serial number.
@@ -1570,32 +1554,8 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Warranty.
-        /// </summary>
-        public static string DeviceInformationWindow_Warranty_Title {
-            get {
-                return ResourceManager.GetString("DeviceInformationWindow_Warranty_Title", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to End date.
-        /// </summary>
-        public static string DeviceInformationWindow_WarrantyEndDate_Title {
-            get {
-                return ResourceManager.GetString("DeviceInformationWindow_WarrantyEndDate_Title", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Start date.
-        /// </summary>
-        public static string DeviceInformationWindow_WarrantyStartDate_Title {
-            get {
-                return ResourceManager.GetString("DeviceInformationWindow_WarrantyStartDate_Title", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Devices.
@@ -1734,36 +1694,8 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Donate with.
-        /// </summary>
-        public static string DonatePage_DonateWith {
-            get {
-                return ResourceManager.GetString("DonatePage_DonateWith", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Development and maintenance of Lenovo Legion Toolkit takes a lot of time. If you like using this software you can support its future by donating an amount of your choice.
-        ///
-        ///Click the PayPal logo below or scan the QR code to donate with PayPal.
-        ///
-        ///Thanks in advance!.
-        /// </summary>
-        public static string DonatePage_Message {
-            get {
-                return ResourceManager.GetString("DonatePage_Message", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Donate.
-        /// </summary>
-        public static string DonatePage_Title {
-            get {
-                return ResourceManager.GetString("DonatePage_Title", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Change scaling of the built-in display.
@@ -3010,41 +2942,9 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to API rate limit reached, please try again later..
-        /// </summary>
-        public static string MainWindow_CheckForUpdates_Error_ReachedRateLimit_Message {
-            get {
-                return ResourceManager.GetString("MainWindow_CheckForUpdates_Error_ReachedRateLimit_Message", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Failed to check for updates.
-        /// </summary>
-        public static string MainWindow_CheckForUpdates_Error_Title {
-            get {
-                return ResourceManager.GetString("MainWindow_CheckForUpdates_Error_Title", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Something went wrong, please try again later..
-        /// </summary>
-        public static string MainWindow_CheckForUpdates_Error_Unknown_Message {
-            get {
-                return ResourceManager.GetString("MainWindow_CheckForUpdates_Error_Unknown_Message", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to No updates found.
-        /// </summary>
-        public static string MainWindow_CheckForUpdates_Success_Title {
-            get {
-                return ResourceManager.GetString("MainWindow_CheckForUpdates_Success_Title", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Legion Zone is running in the background..
@@ -3091,14 +2991,6 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Donate.
-        /// </summary>
-        public static string MainWindow_NavigationItem_Donate {
-            get {
-                return ResourceManager.GetString("MainWindow_NavigationItem_Donate", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Keyboard.
@@ -3136,23 +3028,7 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Update available!.
-        /// </summary>
-        public static string MainWindow_UpdateAvailable {
-            get {
-                return ResourceManager.GetString("MainWindow_UpdateAvailable", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Update {0} available!.
-        /// </summary>
-        public static string MainWindow_UpdateAvailableWithVersion {
-            get {
-                return ResourceManager.GetString("MainWindow_UpdateAvailableWithVersion", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Lenovo Hotkeys is running in the background..
@@ -3451,14 +3327,6 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Update {0} available!.
-        /// </summary>
-        public static string Notification_UpdateAvailable {
-            get {
-                return ResourceManager.GetString("Notification_UpdateAvailable", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Backlight {0}.
@@ -3669,14 +3537,6 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Updates.
-        /// </summary>
-        public static string NotificationsSettingsWindow_Updates_Title {
-            get {
-                return ResourceManager.GetString("NotificationsSettingsWindow_Updates_Title", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Off.
@@ -4992,32 +4852,8 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Checking for updates....
-        /// </summary>
-        public static string SettingsPage_CheckUpdates_Started_Title {
-            get {
-                return ResourceManager.GetString("SettingsPage_CheckUpdates_Started_Title", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Check for updates.
-        /// </summary>
-        public static string SettingsPage_CheckUpdates_Title {
-            get {
-                return ResourceManager.GetString("SettingsPage_CheckUpdates_Title", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Check.
-        /// </summary>
-        public static string SettingsPage_CheckUpdatesButton_Content {
-            get {
-                return ResourceManager.GetString("SettingsPage_CheckUpdatesButton_Content", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Enable Command Line Interface that allows control from command line..
@@ -5500,23 +5336,7 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Update.
-        /// </summary>
-        public static string SettingsPage_Update_Title {
-            get {
-                return ResourceManager.GetString("SettingsPage_Update_Title", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Automatically check for updates.
-        /// </summary>
-        public static string SettingsPage_UpdateCheckFrequency_Title {
-            get {
-                return ResourceManager.GetString("SettingsPage_UpdateCheckFrequency_Title", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Select Windows Power Mode to apply when Power Mode changes..
@@ -5968,14 +5788,6 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Update available!.
-        /// </summary>
-        public static string StatusTrayPopup_UpdateAvailable {
-            get {
-                return ResourceManager.GetString("StatusTrayPopup_UpdateAvailable", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Select icon.
@@ -6280,23 +6092,7 @@ namespace LenovoLegionToolkit.WPF.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Update available.
-        /// </summary>
-        public static string UpdateWindow_Title {
-            get {
-                return ResourceManager.GetString("UpdateWindow_Title", resourceCulture);
-            }
-        }
         
-        /// <summary>
-        ///   Looks up a localized string similar to What&apos;s new?.
-        /// </summary>
-        public static string UpdateWindow_WhatsNew {
-            get {
-                return ResourceManager.GetString("UpdateWindow_WhatsNew", resourceCulture);
-            }
-        }
         
         /// <summary>
         ///   Looks up a localized string similar to Adjust keyboard backlight brightness..

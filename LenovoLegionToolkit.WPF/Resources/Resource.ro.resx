@@ -452,11 +452,7 @@ ATENȚIE: Această acțiune nu va rula corect dacă afișajul intern este oprit 
   </data>
   <data name="DeviceInformationWindow_Device_Title" xml:space="preserve">
     <value>Dispozitiv</value>
-  </data>
-  <data name="DeviceInformationWindow_LenovoSupport" xml:space="preserve">
-    <value>Suport Lenovo</value>
-  </data>
-  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
+  </data>  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
     <value>Tip sistem</value>
   </data>
   <data name="DeviceInformationWindow_Manufacturer_Title" xml:space="preserve">
@@ -470,17 +466,7 @@ ATENȚIE: Această acțiune nu va rula corect dacă afișajul intern este oprit 
   </data>
   <data name="DeviceInformationWindow_Title" xml:space="preserve">
     <value>Despre dispozitivul dvs.</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyEndDate_Title" xml:space="preserve">
-    <value>Dată încheiere</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyStartDate_Title" xml:space="preserve">
-    <value>Dată început</value>
-  </data>
-  <data name="DeviceInformationWindow_Warranty_Title" xml:space="preserve">
-    <value>Garanție</value>
-  </data>
-  <data name="Active" xml:space="preserve">
+  </data>  <data name="Active" xml:space="preserve">
     <value>Activ</value>
   </data>
   <data name="DiscreteGPUControl_Deactivate" xml:space="preserve">
@@ -524,21 +510,7 @@ ATENȚIE: Această acțiune nu va rula corect dacă afișajul intern este oprit.
   </data>
   <data name="DisplayBrightnessAutomationStepControl_Title" xml:space="preserve">
     <value>Luminozitate afișaj</value>
-  </data>
-  <data name="DonatePage_DonateWith" xml:space="preserve">
-    <value>Donați cu</value>
-  </data>
-  <data name="DonatePage_Message" xml:space="preserve">
-    <value>Dezvoltarea și întreținerea Lenovo Legion Toolkit necesită mult timp. Dacă vă place acest software, îi puteți sprijini viitorul donând o sumă la alegere.
-
-Faceți clic pe sigla PayPal de mai jos sau scanați codul QR pentru a dona cu PayPal.
-
-Mulțumesc anticipat!</value>
-  </data>
-  <data name="DonatePage_Title" xml:space="preserve">
-    <value>Donație</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
+  </data>  <data name="Edit" xml:space="preserve">
     <value>Editare</value>
   </data>
   <data name="ExcludeRefreshRatesWindow_Description" xml:space="preserve">
@@ -730,11 +702,7 @@ ATENȚIE: Această acțiune nu va rula corect dacă afișajul incorporat este op
   </data>
   <data name="MainWindow_NavigationItem_Dashboard" xml:space="preserve">
     <value>Bord</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Donate" xml:space="preserve">
-    <value>Donație</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
+  </data>  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
     <value>Tastatură</value>
   </data>
   <data name="MainWindow_NavigationItem_Packages" xml:space="preserve">
@@ -742,14 +710,7 @@ ATENȚIE: Această acțiune nu va rula corect dacă afișajul incorporat este op
   </data>
   <data name="MainWindow_NavigationItem_Settings" xml:space="preserve">
     <value>Setări</value>
-  </data>
-  <data name="MainWindow_UpdateAvailable" xml:space="preserve">
-    <value>Actualizare disponibilă!</value>
-  </data>
-  <data name="MainWindow_UpdateAvailableWithVersion" xml:space="preserve">
-    <value>Actualizarea {0} disponibilă!</value>
-  </data>
-  <data name="MoveDown" xml:space="preserve">
+  </data>  <data name="MoveDown" xml:space="preserve">
     <value>Mutați jos</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
@@ -1333,14 +1294,7 @@ Salvarea logurilor va fi activată automat dacă alegeți să continuați.</valu
   </data>
   <data name="Update" xml:space="preserve">
     <value>Actualizare</value>
-  </data>
-  <data name="UpdateWindow_Title" xml:space="preserve">
-    <value>Actualizare disponibilă</value>
-  </data>
-  <data name="UpdateWindow_WhatsNew" xml:space="preserve">
-    <value>Ce-i nou?</value>
-  </data>
-  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
+  </data>  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
     <value>Reglați luminozitatea iluminării tastaturii.</value>
   </data>
   <data name="WhiteKeyboardBacklightAutomationStepControl_Title" xml:space="preserve">
@@ -1516,11 +1470,7 @@ Aceste setări au efect doar atunci când modul Personalizat este activat.</valu
   </data>
   <data name="SettingsPage_SynchronizeBrightnessToAllPowerPlans_Message" xml:space="preserve">
     <value>Când este activată, același nivel de luminozitate va fi aplicat tuturor planurilor de alimentare Windows ori de câte ori îl schimbați.</value>
-  </data>
-  <data name="Notification_UpdateAvailable" xml:space="preserve">
-    <value>Actualizarea {0} disponibilă!</value>
-  </data>
-  <data name="GodModeSettingsWindow_CPU_PeakPL" xml:space="preserve">
+  </data>  <data name="GodModeSettingsWindow_CPU_PeakPL" xml:space="preserve">
     <value>Limită putere de vârf</value>
   </data>
   <data name="GodModeSettingsWindow_CPU_APUsPPT_PL" xml:space="preserve">
@@ -1597,11 +1547,7 @@ Aceste setări au efect doar atunci când modul Personalizat este activat.</valu
   </data>
   <data name="StatusTrayPopup_DischargeRate" xml:space="preserve">
     <value>Rată de descărcare</value>
-  </data>
-  <data name="StatusTrayPopup_UpdateAvailable" xml:space="preserve">
-    <value>Actualizare disponibilă!</value>
-  </data>
-  <data name="SymbolRegularPicker_Title" xml:space="preserve">
+  </data>  <data name="SymbolRegularPicker_Title" xml:space="preserve">
     <value>Selectare iconiță</value>
   </data>
   <data name="AutomationPage_ChangeIcon" xml:space="preserve">

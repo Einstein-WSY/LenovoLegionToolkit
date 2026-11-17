@@ -342,7 +342,6 @@ public enum NotificationType
     SpectrumBacklightPresetChanged,
     TouchpadOn,
     TouchpadOff,
-    UpdateAvailable, // 有新版本可用
     WhiteKeyboardBacklightChanged,
     WhiteKeyboardBacklightOff
 }
@@ -775,35 +774,6 @@ public enum TouchpadLockState
     Off,
     [Display(ResourceType = typeof(Resource), Name = "TouchpadLockState_On")]
     On
-}
-
-/// <summary>
-/// 自动检查更新的频率。
-/// </summary>
-public enum UpdateCheckFrequency
-{
-    [Display(ResourceType = typeof(Resource), Name = "UpdateCheckFrequency_PerHour")]
-    PerHour,
-    [Display(ResourceType = typeof(Resource), Name = "UpdateCheckFrequency_PerThreeHours")]
-    PerThreeHours,
-    [Display(ResourceType = typeof(Resource), Name = "UpdateCheckFrequency_PerTwelveHours")]
-    PerTwelveHours,
-    [Display(ResourceType = typeof(Resource), Name = "UpdateCheckFrequency_PerDay")]
-    PerDay,
-    [Display(ResourceType = typeof(Resource), Name = "UpdateCheckFrequency_PerWeek")]
-    PerWeek,
-    [Display(ResourceType = typeof(Resource), Name = "UpdateCheckFrequency_PerMonth")]
-    PerMonth
-}
-
-/// <summary>
-/// 更新检查结果；RateLimitReached 表示触发了 GitHub API 速率限制。
-/// </summary>
-public enum UpdateCheckStatus
-{
-    Success,
-    RateLimitReached,
-    Error
 }
 
 /// <summary>

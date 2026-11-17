@@ -33,7 +33,7 @@ using LenovoLegionToolkit.Lib.Extensions;
 namespace LenovoLegionToolkit.WPF.Windows;
 
 /// <summary>
-/// 应用主窗口，承载导航栏与各功能页面，并管理托盘图标、窗口尺寸记忆、状态指示器与更新检查。
+/// 应用主窗口，承载导航栏与各功能页面，并管理托盘图标、窗口尺寸记忆与状态指示器。
 /// </summary>
 /// <remarks>主窗口是整个应用的宿主，关闭时根据设置决定是最小化还是退出应用。</remarks>
 public partial class MainWindow
@@ -43,7 +43,6 @@ public partial class MainWindow
     private readonly VantageDisabler _vantageDisabler = IoCContainer.Resolve<VantageDisabler>();
     private readonly LegionZoneDisabler _legionZoneDisabler = IoCContainer.Resolve<LegionZoneDisabler>();
     private readonly FnKeysDisabler _fnKeysDisabler = IoCContainer.Resolve<FnKeysDisabler>();
-    //private readonly UpdateChecker _updateChecker = IoCContainer.Resolve<UpdateChecker>(); // 【已注释】更新模块已停用
 
     private TrayHelper? _trayHelper;
 
@@ -68,7 +67,6 @@ public partial class MainWindow
 
         Closing += MainWindow_Closing;
         Closed += MainWindow_Closed;
-        IsVisibleChanged += MainWindow_IsVisibleChanged;
         Loaded += MainWindow_Loaded;
         SourceInitialized += MainWindow_SourceInitialized;
         StateChanged += MainWindow_StateChanged;
@@ -116,7 +114,6 @@ public partial class MainWindow
 
         LoadDeviceInfo();
         UpdateIndicators();
-        //CheckForUpdates(); // 【已注释】更新模块已停用，不再在启动时检查更新
 
         // Ctrl+Tab / Ctrl+Shift+Tab 在页面间循环切换；Ctrl+数字 直接跳转到对应导航项
         InputBindings.Add(new KeyBinding(new ActionCommand(_navigationStore.NavigateToNext), Key.Tab, ModifierKeys.Control));
@@ -196,17 +193,6 @@ public partial class MainWindow
         }
     }
 
-    /// <summary>
-    /// 窗口重新可见时再次检查更新，保证提示信息及时刷新。
-    /// </summary>
-    private void MainWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-    {
-        if (!IsVisible)
-            return;
-
-        //CheckForUpdates(); // 【已注释】更新模块已停用
-    }
-
     /// <summary>点击日志指示器时打开日志文件所在位置。</summary>
     private void OpenLogIndicator_Click(object sender, MouseButtonEventArgs e) => OpenLog();
 
@@ -230,20 +216,6 @@ public partial class MainWindow
 
         ShowDeviceInfoWindow();
     }
-
-    /*
-    /// <summary>点击更新指示器时打开更新窗口。</summary>
-    private void UpdateIndicator_Click(object sender, RoutedEventArgs e) => ShowUpdateWindow();
-
-    /// <summary>键盘回车或空格触发更新指示器。</summary>
-    private void UpdateIndicator_KeyDown(object sender, KeyEventArgs e)
-    {
-        if (e.Key is not Key.Enter and not Key.Space)
-            return;
-
-        ShowUpdateWindow();
-    }
-    */
 
     /// <summary>
     /// 在后台读取机器型号，并在 UI 线程回填到设备信息指示器。
@@ -318,54 +290,6 @@ public partial class MainWindow
         });
     }
 
-    /*
-    /// <summary>
-    /// 检查应用更新；有可用版本时点亮更新指示器，窗口最小化时通过消息中心发送通知。
-    /// 【已注释】更新模块已停用，此方法保留但不再执行任何更新检查。
-    /// </summary>
-    /// <param name="manualCheck">是否为用户手动触发，手动触发时对检查结果给出显式提示。</param>
-    public void CheckForUpdates(bool manualCheck = false)
-    {
-        Task.Run(() => _updateChecker.CheckAsync(manualCheck))
-            .ContinueWith(async updatesAvailable =>
-            {
-                var result = updatesAvailable.Result;
-                if (result is null)
-                {
-                    _updateIndicator.Visibility = Visibility.Collapsed;
-
-                    if (manualCheck && WindowState != WindowState.Minimized)
-                    {
-                        switch (_updateChecker.Status)
-                        {
-                            case UpdateCheckStatus.Success:
-                                await SnackbarHelper.ShowAsync(Resource.MainWindow_CheckForUpdates_Success_Title);
-                                break;
-                            case UpdateCheckStatus.RateLimitReached:
-                                await SnackbarHelper.ShowAsync(Resource.MainWindow_CheckForUpdates_Error_Title, Resource.MainWindow_CheckForUpdates_Error_ReachedRateLimit_Message, SnackbarType.Error);
-                                break;
-                            case UpdateCheckStatus.Error:
-                                await SnackbarHelper.ShowAsync(Resource.MainWindow_CheckForUpdates_Error_Title, Resource.MainWindow_CheckForUpdates_Error_Unknown_Message, SnackbarType.Error);
-                                break;
-                        }
-                    }
-                }
-                else
-                {
-                    // 结果非空说明存在更高版本，格式化为主.次.修订三段版本号
-                    var versionNumber = result.ToString(3);
-
-                    _updateIndicatorText.Text =
-                        string.Format(Resource.MainWindow_UpdateAvailableWithVersion, versionNumber);
-                    _updateIndicator.Visibility = Visibility.Visible;
-
-                    if (WindowState == WindowState.Minimized)
-                        MessagingCenter.Publish(new NotificationMessage(NotificationType.UpdateAvailable, versionNumber));
-                }
-            }, TaskScheduler.FromCurrentSynchronizationContext());
-    }
-    */
-
     /// <summary>
     /// 恢复上次保存的窗口尺寸，并在主显示器工作区内居中显示。
     /// </summary>
@@ -428,18 +352,6 @@ public partial class MainWindow
         var window = new DeviceInformationWindow { Owner = this };
         window.ShowDialog();
     }
-
-    /*
-    /// <summary>
-    /// 以模态方式显示更新窗口。
-    /// 【已注释】更新模块已停用，不再打开更新窗口。
-    /// </summary>
-    public void ShowUpdateWindow()
-    {
-        var window = new UpdateWindow { Owner = this };
-        window.ShowDialog();
-    }
-    */
 
     /// <summary>
     /// 在启用"最小化到托盘"设置时隐藏窗口并降低进程优先级。

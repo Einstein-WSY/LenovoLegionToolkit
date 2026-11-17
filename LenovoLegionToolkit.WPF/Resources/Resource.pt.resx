@@ -456,11 +456,7 @@ ATENÇÃO: Esta ação não irá correr corretamente se o ecrã interno estiver 
   </data>
   <data name="DeviceInformationWindow_Device_Title" xml:space="preserve">
     <value>Dispositivo</value>
-  </data>
-  <data name="DeviceInformationWindow_LenovoSupport" xml:space="preserve">
-    <value>Suporte da Lenovo</value>
-  </data>
-  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
+  </data>  <data name="DeviceInformationWindow_MachineType_Title" xml:space="preserve">
     <value>Tipo de Dispositivo</value>
   </data>
   <data name="DeviceInformationWindow_Manufacturer_Title" xml:space="preserve">
@@ -474,17 +470,7 @@ ATENÇÃO: Esta ação não irá correr corretamente se o ecrã interno estiver 
   </data>
   <data name="DeviceInformationWindow_Title" xml:space="preserve">
     <value>Sobre o dispositivo</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyEndDate_Title" xml:space="preserve">
-    <value>Data de fim</value>
-  </data>
-  <data name="DeviceInformationWindow_WarrantyStartDate_Title" xml:space="preserve">
-    <value>Data de início</value>
-  </data>
-  <data name="DeviceInformationWindow_Warranty_Title" xml:space="preserve">
-    <value>Garantia</value>
-  </data>
-  <data name="Active" xml:space="preserve">
+  </data>  <data name="Active" xml:space="preserve">
     <value>Ativo</value>
   </data>
   <data name="DiscreteGPUControl_Deactivate" xml:space="preserve">
@@ -529,21 +515,7 @@ ATENÇÃO: Está ação não irá funcionar corretamente se o ecrã interno esti
   </data>
   <data name="DisplayBrightnessAutomationStepControl_Title" xml:space="preserve">
     <value>Brilho do ecrã</value>
-  </data>
-  <data name="DonatePage_DonateWith" xml:space="preserve">
-    <value>Doar através de</value>
-  </data>
-  <data name="DonatePage_Message" xml:space="preserve">
-    <value>O desenvolvimento e manutenção do Lenovo Legion Toolkit demora bastante tempo. Se gostas deste software podes suportar o seu futuro ao doar uma quantia da tua escolha.
-
-Clica no logo do PayPal abaixo ou faz scan do QR code para doar através do PayPal.
-
-Obrigado desde já!</value>
-  </data>
-  <data name="DonatePage_Title" xml:space="preserve">
-    <value>Doar</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
+  </data>  <data name="Edit" xml:space="preserve">
     <value>Editar</value>
   </data>
   <data name="ExcludeRefreshRatesWindow_Description" xml:space="preserve">
@@ -761,11 +733,7 @@ ATENÇÃO: Está ação não irá executar corretamente se o ecrã interno estiv
   </data>
   <data name="MainWindow_NavigationItem_Dashboard" xml:space="preserve">
     <value>Dashboard</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Donate" xml:space="preserve">
-    <value>Doar</value>
-  </data>
-  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
+  </data>  <data name="MainWindow_NavigationItem_Keyboard" xml:space="preserve">
     <value>Teclado</value>
   </data>
   <data name="MainWindow_NavigationItem_Packages" xml:space="preserve">
@@ -773,14 +741,7 @@ ATENÇÃO: Está ação não irá executar corretamente se o ecrã interno estiv
   </data>
   <data name="MainWindow_NavigationItem_Settings" xml:space="preserve">
     <value>Definições</value>
-  </data>
-  <data name="MainWindow_UpdateAvailable" xml:space="preserve">
-    <value>Atualização disponível!</value>
-  </data>
-  <data name="MainWindow_UpdateAvailableWithVersion" xml:space="preserve">
-    <value>Atualização {0} disponível!</value>
-  </data>
-  <data name="MoveDown" xml:space="preserve">
+  </data>  <data name="MoveDown" xml:space="preserve">
     <value>Mover para baixo</value>
   </data>
   <data name="MoveUp" xml:space="preserve">
@@ -1389,14 +1350,7 @@ Logs serão guardados automaticamente, se escolheres continuar.</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>Atualizar</value>
-  </data>
-  <data name="UpdateWindow_Title" xml:space="preserve">
-    <value>Atualização disponível</value>
-  </data>
-  <data name="UpdateWindow_WhatsNew" xml:space="preserve">
-    <value>Novidades</value>
-  </data>
-  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
+  </data>  <data name="WhiteKeyboardBacklightAutomationStepControl_Message" xml:space="preserve">
     <value>Ajustar o brilho da luz de fundo do teclado.</value>
   </data>
   <data name="WhiteKeyboardBacklightAutomationStepControl_Title" xml:space="preserve">
@@ -1578,11 +1532,7 @@ Esta definição apenas tem efeito quando o mesmo está ativo.</value>
   </data>
   <data name="SettingsPage_SynchronizeBrightnessToAllPowerPlans_Message" xml:space="preserve">
     <value>Quando ligado, a mesma luminosidade será aplicada a todos os esquemas de energia do Windows sempre que a mudares.</value>
-  </data>
-  <data name="Notification_UpdateAvailable" xml:space="preserve">
-    <value>Atualização {0} disponível!</value>
-  </data>
-  <data name="GodModeSettingsWindow_CPU_PeakPL" xml:space="preserve">
+  </data>  <data name="GodModeSettingsWindow_CPU_PeakPL" xml:space="preserve">
     <value>Limite de Energia Máximo</value>
   </data>
   <data name="GodModeSettingsWindow_CPU_APUsPPT_PL" xml:space="preserve">
@@ -1659,11 +1609,7 @@ Esta definição apenas tem efeito quando o mesmo está ativo.</value>
   </data>
   <data name="StatusTrayPopup_DischargeRate" xml:space="preserve">
     <value>Taxa de descarregamento</value>
-  </data>
-  <data name="StatusTrayPopup_UpdateAvailable" xml:space="preserve">
-    <value>Atualização disponível!</value>
-  </data>
-  <data name="SymbolRegularPicker_Title" xml:space="preserve">
+  </data>  <data name="SymbolRegularPicker_Title" xml:space="preserve">
     <value>Selecionar ícone</value>
   </data>
   <data name="AutomationPage_ChangeIcon" xml:space="preserve">
@@ -1857,11 +1803,7 @@ Poderá ser necessário reiniciar para aplicar mudança.</value>
   </data>
   <data name="NotificationsSettingsWindow_NotificationDuration_Title" xml:space="preserve">
     <value>Duração</value>
-  </data>
-  <data name="NotificationsSettingsWindow_Updates_Title" xml:space="preserve">
-    <value>Atualizações</value>
-  </data>
-  <data name="GodModeSettingsWindow_GPU_ToCpuDynamicBoostControl" xml:space="preserve">
+  </data>  <data name="GodModeSettingsWindow_GPU_ToCpuDynamicBoostControl" xml:space="preserve">
     <value>Dynamic Boost da GPU para CPU</value>
   </data>
   <data name="GodModeSettingsWindow_GPU_ToCpuDynamicBoostControl_Description" xml:space="preserve">
@@ -1972,11 +1914,7 @@ Formatos suportados são: {1}.</value>
   </data>
   <data name="SpectrumKeyboardBacklightControl_Preset" xml:space="preserve">
     <value>Predefinição</value>
-  </data>
-  <data name="DeviceInformationWindow_Refresh" xml:space="preserve">
-    <value>Atualizar</value>
-  </data>
-  <data name="AbstractAutomationStepControl_Delete" xml:space="preserve">
+  </data>  <data name="AbstractAutomationStepControl_Delete" xml:space="preserve">
     <value>Apagar</value>
   </data>
   <data name="PeriodicActionPipelineTriggerTabItemContent_PeriodMinutes" xml:space="preserve">
