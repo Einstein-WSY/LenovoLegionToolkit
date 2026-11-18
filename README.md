@@ -51,6 +51,7 @@ _Join the Legion Series Discord: https://discord.com/invite/legionseries!_
 # Table of Contents
   - [Disclaimer](#disclaimer)
   - [Download](#download)
+  - [从源码构建 / Build from Source](#从源码构建--build-from-source)
   - [Compatibility](#compatibility)
   - [Features](#features)
   - [Donate](#donate)
@@ -67,6 +68,10 @@ _Join the Legion Series Discord: https://discord.com/invite/legionseries!_
 Please be patient and read through this readme carefully - it contains important information.
 
 ## Download
+
+> **本仓库内置安装包 / Prebuilt installer in this repo**
+>
+> `dist/` 目录中已提供基于本项目源码编译好的最新版安装程序 [dist/LenovoLegionToolkitSetup.exe](dist/LenovoLegionToolkitSetup.exe)（v1.0.1），可直接下载使用。该版本由本人修改编译（含中文注释、汉化、模块调整与缺陷修复），**仅供学习研究使用**。
 
 You can download the program by the following ways:
 
@@ -131,6 +136,73 @@ The exact version number can be different, but as long as it is `8.x.x` it shoul
 #### Want to help with testing?
 
 Join the [Legion Series Discord](https://discord.com/invite/legionseries) and head to `#legion-toolkit` channel. Beta versions of future releases are posted there frequently!
+
+## 从源码构建 / Build from Source
+
+### 环境要求 / Requirements
+
+| 工具 | 版本要求 | 用途 | 获取方式 |
+| --- | --- | --- | --- |
+| Windows | 10 21H2 及以上 / 11 | 编译与运行环境（本项目依赖 Windows API 与 WMI） | — |
+| **.NET SDK** | **8.0.x**（目标框架为 `net8.0-windows`） | 编译必需 | [dotnet.microsoft.com/download/dotnet/8.0](https://dotnet.microsoft.com/download/dotnet/8.0)，或 `winget install Microsoft.DotNet.SDK.8` |
+| Visual Studio 2022 | 17.8+，勾选 **.NET 桌面开发** 工作负载 | 可选，用于 IDE 调试运行 | [visualstudio.microsoft.com](https://visualstudio.microsoft.com/)；不装 VS 也可直接用 `dotnet` 命令行 |
+| Git | 任意较新版本 | 拉取源码 | [git-scm.com](https://git-scm.com/) |
+| Inno Setup 6 | 6.x（可选） | 打包安装程序时才需要 | [jrsoftware.org/isinfo.php](https://jrsoftware.org/isinfo.php) 或 `winget install JRSoftware.InnoSetup` |
+
+验证 .NET SDK 安装：`dotnet --version` 输出 `8.x.x` 即可。
+
+### 编译步骤 / Steps
+
+**1. 克隆仓库**
+
+```sh
+git clone https://github.com/Einstein-WSY/LenovoLegionToolkit.git
+cd LenovoLegionToolkit
+```
+
+**2. 编译整个解决方案（验证环境是否就绪）**
+
+```sh
+dotnet build LenovoLegionToolkit.sln -c Release
+```
+
+编译成功会输出 `0 个错误`。解决方案包含主程序 WPF、后台库 Lib、自动化 Lib.Automation 等多个工程。
+
+**3. 运行 / 调试**
+
+- 使用 Visual Studio：打开 `LenovoLegionToolkit.sln`，将 `LenovoLegionToolkit.WPF` 设为启动项目，按 F5。
+- 仅用命令行：
+
+```sh
+dotnet run --project LenovoLegionToolkit.WPF -c Release
+```
+
+**4. 发布 exe（单目录输出）**
+
+```sh
+dotnet publish LenovoLegionToolkit.WPF -c Release -o build /p:DebugType=None /p:FileVersion=1.0.1 /p:Version=1.0.1
+```
+
+输出在 `build/` 目录，双击 `LenovoLegionToolkit.exe` 即可运行（目标机器需安装 .NET 8 Desktop Runtime；不带版本参数也能编译，仅文件属性里的版本号为默认值）。
+
+**5. 打包安装程序（可选）**
+
+安装 [Inno Setup 6](https://jrsoftware.org/isinfo.php) 后执行：
+
+```sh
+"C:\Program Files (x86)\Inno Setup 6\ISCC.exe" make_installer.iss /DMyAppVersion=1.0.1
+```
+
+输出为 `build_installer/LenovoLegionToolkitSetup.exe`。该脚本会同时打包主程序、命令行工具（CLI）与 SpectrumTester，并在目标机器缺少 .NET 8 时自动下载安装。
+
+### 常见问题
+
+- **编译报错找不到 `net8.0-windows`**：.NET SDK 版本不对，确认安装的是 8.x 而非 6/7/9。
+- **编译报错找不到 Windows 类型（WMI / HID 相关）**：必须在 Windows 上编译，Linux/macOS 不支持。
+- **`ISCC.exe` 路径带 `/D` 参数报错**：在 Git Bash 中需要加 `MSYS_NO_PATHCONV=1` 前缀，或在 CMD/PowerShell 中执行。
+- **运行时提示缺少 .NET**：安装 [.NET 8 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/8.0) 的 `Desktop Runtime`（Windows x64）。
+
+> 注意：本项目修改自原作者已归档的代码，仅供个人学习研究使用；重新编译分发的版本同样适用原 GPL-3.0 协议。
 
 ## Compatibility
 
