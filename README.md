@@ -9,6 +9,8 @@
 
 # Lenovo Legion Toolkit（个人学习版）
 
+原作者项目地址：https://github.com/BartoszCichecki/LenovoLegionToolkit
+
 本项目为联想拯救者（Legion）系列笔记本的实用工具，可在不依赖 Lenovo Vantage / Legion Zone 的情况下调整电源模式、电池充电阈值、键盘背光等仅 Vantage 提供的功能。原项目不驻留后台服务、占用低、无遥测。
 
 本仓库基于**原作者已归档的代码**创建，仅用于学习研究。在原代码基础上做的主要改动：
