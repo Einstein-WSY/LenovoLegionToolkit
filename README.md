@@ -1,3 +1,12 @@
+> [!NOTE]
+> **关于本仓库 / About this repository**
+>
+> 本仓库是 [Bartosz Cichecki](https://github.com/BartoszCichecki/LenovoLegionToolkit) 归档的开源项目 LenovoLegionToolkit 的副本，由本人（[Einstein-WSY](https://github.com/Einstein-WSY)）基于原作者已归档的代码自行创建，**仅供个人学习与研究使用**，非官方项目，与原作者及联想（Lenovo）均无隶属关系。
+>
+> 在原代码基础上做了中文注释、界面汉化、部分模块的调整与缺陷修复，相关改动仅用于学习目的。原项目采用 GPL-3.0 协议，本仓库的延续使用同样遵循该协议；如需使用或分发，请保留原许可与署名。
+>
+> This repository is a personal copy of the archived open-source project LenovoLegionToolkit by [Bartosz Cichecki](https://github.com/BartoszCichecki/LenovoLegionToolkit), created by [Einstein-WSY](https://github.com/Einstein-WSY) **for personal learning and research purposes only**. It is not an official project and is not affiliated with the original author or Lenovo. Modifications (Chinese comments, localization adjustments, and bug fixes) are for study only. The project remains licensed under GPL-3.0.
+
 > [!IMPORTANT]
 > _Archived on July 24, 2025, This project is no longer actively maintained._
 > 
